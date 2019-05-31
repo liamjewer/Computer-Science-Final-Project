@@ -28,6 +28,8 @@ Partial Class Form1
         Me.txtIP = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnSend = New System.Windows.Forms.Button()
+        Me.txtLPort = New System.Windows.Forms.TextBox()
+        Me.txtOPort = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'btnStart
@@ -59,7 +61,7 @@ Partial Class Form1
         '
         'txtIP
         '
-        Me.txtIP.Location = New System.Drawing.Point(131, 188)
+        Me.txtIP.Location = New System.Drawing.Point(112, 188)
         Me.txtIP.Name = "txtIP"
         Me.txtIP.Size = New System.Drawing.Size(100, 20)
         Me.txtIP.TabIndex = 3
@@ -82,11 +84,29 @@ Partial Class Form1
         Me.btnSend.Text = "Send"
         Me.btnSend.UseVisualStyleBackColor = True
         '
+        'txtLPort
+        '
+        Me.txtLPort.Location = New System.Drawing.Point(112, 215)
+        Me.txtLPort.Name = "txtLPort"
+        Me.txtLPort.Size = New System.Drawing.Size(40, 20)
+        Me.txtLPort.TabIndex = 6
+        Me.txtLPort.Text = "15000"
+        '
+        'txtOPort
+        '
+        Me.txtOPort.Location = New System.Drawing.Point(175, 215)
+        Me.txtOPort.Name = "txtOPort"
+        Me.txtOPort.Size = New System.Drawing.Size(37, 20)
+        Me.txtOPort.TabIndex = 7
+        Me.txtOPort.Text = "16000"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(243, 219)
+        Me.ClientSize = New System.Drawing.Size(243, 239)
+        Me.Controls.Add(Me.txtOPort)
+        Me.Controls.Add(Me.txtLPort)
         Me.Controls.Add(Me.btnSend)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtIP)
@@ -106,4 +126,6 @@ Partial Class Form1
     Friend WithEvents txtIP As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents btnSend As Button
+    Friend WithEvents txtLPort As TextBox
+    Friend WithEvents txtOPort As TextBox
 End Class

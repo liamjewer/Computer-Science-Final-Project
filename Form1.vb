@@ -14,7 +14,7 @@ Public Class Form1
     End Sub
 
     Sub listen()
-        Dim serverSocket As New TcpListener(15000)
+        Dim serverSocket As New TcpListener(CInt(txtLPort.Text))
         Dim requestCount As Integer
         Dim clientSocket As TcpClient
         Dim messageReceived As Boolean = False
@@ -73,12 +73,12 @@ Public Class Form1
             txtMsg.Clear()
             Console.WriteLine("Sending message """ & data & """ to " & IP)
             Dim client As TcpClient = New TcpClient()
-            client.Connect(New IPEndPoint(IPAddress.Parse(IP), 1500))
+            client.Connect(New IPEndPoint(IPAddress.Parse(IP), CInt(txtOPort.Text)))
             Dim stream As NetworkStream = client.GetStream()
             Dim sendBytes As Byte() = Encoding.ASCII.GetBytes(data)
             stream.Write(sendBytes, 0, sendBytes.Length)
         Catch ex As Exception
-            MsgBox("The ip you are trying to contact is not lstening")
+            msg(ex.ToString)
         End Try
     End Sub
 
