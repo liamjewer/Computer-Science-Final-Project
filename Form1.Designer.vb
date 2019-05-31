@@ -22,7 +22,6 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.btnStart = New System.Windows.Forms.Button()
         Me.txtOut = New System.Windows.Forms.TextBox()
         Me.txtMsg = New System.Windows.Forms.TextBox()
         Me.txtIP = New System.Windows.Forms.TextBox()
@@ -31,23 +30,14 @@ Partial Class Form1
         Me.txtPort = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
-        'btnStart
-        '
-        Me.btnStart.Location = New System.Drawing.Point(13, 13)
-        Me.btnStart.Name = "btnStart"
-        Me.btnStart.Size = New System.Drawing.Size(218, 23)
-        Me.btnStart.TabIndex = 0
-        Me.btnStart.Text = "listen"
-        Me.btnStart.UseVisualStyleBackColor = True
-        '
         'txtOut
         '
         Me.txtOut.Font = New System.Drawing.Font("Monospac821 BT", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtOut.Location = New System.Drawing.Point(13, 43)
+        Me.txtOut.Location = New System.Drawing.Point(13, 12)
         Me.txtOut.Multiline = True
         Me.txtOut.Name = "txtOut"
         Me.txtOut.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtOut.Size = New System.Drawing.Size(218, 112)
+        Me.txtOut.Size = New System.Drawing.Size(218, 143)
         Me.txtOut.TabIndex = 1
         '
         'txtMsg
@@ -102,15 +92,12 @@ Partial Class Form1
         Me.Controls.Add(Me.txtIP)
         Me.Controls.Add(Me.txtMsg)
         Me.Controls.Add(Me.txtOut)
-        Me.Controls.Add(Me.btnStart)
         Me.Name = "Form1"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents btnStart As Button
     Friend WithEvents txtOut As TextBox
     Friend WithEvents txtMsg As TextBox
     Friend WithEvents txtIP As TextBox
