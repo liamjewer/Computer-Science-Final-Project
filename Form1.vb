@@ -106,4 +106,8 @@ Public Class Form1
             End If
         End If
     End Sub
+
+    Private Sub BtnFind_Click(sender As Object, e As EventArgs) Handles btnFind.Click
+        'find all local adresses and put in combobox (button will be removed later)
+    End Sub
 End Class

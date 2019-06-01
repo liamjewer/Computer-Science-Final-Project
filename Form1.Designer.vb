@@ -28,6 +28,8 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnSend = New System.Windows.Forms.Button()
         Me.txtPort = New System.Windows.Forms.TextBox()
+        Me.btnFind = New System.Windows.Forms.Button()
+        Me.cmbIPs = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'txtOut
@@ -81,11 +83,30 @@ Partial Class Form1
         Me.txtPort.TabIndex = 6
         Me.txtPort.Text = "15000"
         '
+        'btnFind
+        '
+        Me.btnFind.Location = New System.Drawing.Point(13, 218)
+        Me.btnFind.Name = "btnFind"
+        Me.btnFind.Size = New System.Drawing.Size(75, 23)
+        Me.btnFind.TabIndex = 7
+        Me.btnFind.Text = "Find IPs"
+        Me.btnFind.UseVisualStyleBackColor = True
+        '
+        'cmbIPs
+        '
+        Me.cmbIPs.FormattingEnabled = True
+        Me.cmbIPs.Location = New System.Drawing.Point(95, 218)
+        Me.cmbIPs.Name = "cmbIPs"
+        Me.cmbIPs.Size = New System.Drawing.Size(136, 21)
+        Me.cmbIPs.TabIndex = 8
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(243, 219)
+        Me.ClientSize = New System.Drawing.Size(243, 251)
+        Me.Controls.Add(Me.cmbIPs)
+        Me.Controls.Add(Me.btnFind)
         Me.Controls.Add(Me.txtPort)
         Me.Controls.Add(Me.btnSend)
         Me.Controls.Add(Me.Label1)
@@ -104,4 +125,6 @@ Partial Class Form1
     Friend WithEvents Label1 As Label
     Friend WithEvents btnSend As Button
     Friend WithEvents txtPort As TextBox
+    Friend WithEvents btnFind As Button
+    Friend WithEvents cmbIPs As ComboBox
 End Class
