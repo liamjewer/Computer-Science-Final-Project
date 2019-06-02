@@ -15,6 +15,7 @@ Public Class Form1
         txtIP.Text = strIPAddress
         running = True
 
+        'run listener on separate thread
         Dim listenTrd As Thread
         listenTrd = New Thread(AddressOf StartServer)
         listenTrd.IsBackground = True
@@ -41,26 +42,22 @@ Public Class Form1
             While (Not (messageReceived))
                 Try
                     requestCount = requestCount + 1
-                    Dim networkStream As NetworkStream =
-                            clientSocket.GetStream()
+                    Dim networkStream As NetworkStream = clientSocket.GetStream()
                     Dim bytesFrom(10024) As Byte
                     networkStream.Read(bytesFrom, 0, bytesFrom.Length)
-                    Dim dataFromClient As String =
-                            System.Text.Encoding.ASCII.GetString(bytesFrom)
-                    dataFromClient =
-                        dataFromClient.Substring(0, dataFromClient.Length)
+                    Dim dataFromClient As String = System.Text.Encoding.ASCII.GetString(bytesFrom)
+                    dataFromClient = dataFromClient.Substring(0, dataFromClient.Length)
+                    'invoke into other thread
                     txtOut.Invoke(Sub()
                                       txtOut.Text += dataFromClient
                                       txtOut.Text += vbNewLine
                                   End Sub)
+
                     messageReceived = True
-                    Dim serverResponse As String =
-                        "Server response " + Convert.ToString(requestCount)
-                    Dim sendBytes As [Byte]() =
-                        Encoding.ASCII.GetBytes(serverResponse)
+                    Dim serverResponse As String = "Server response " + Convert.ToString(requestCount)
+                    Dim sendBytes As [Byte]() = Encoding.ASCII.GetBytes(serverResponse)
                     networkStream.Write(sendBytes, 0, sendBytes.Length)
                     networkStream.Flush()
-                    msg(serverResponse)
                 Catch ex As Exception
                     End
                 End Try
