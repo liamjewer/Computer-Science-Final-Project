@@ -28,8 +28,9 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnSend = New System.Windows.Forms.Button()
         Me.txtPort = New System.Windows.Forms.TextBox()
-        Me.btnFind = New System.Windows.Forms.Button()
-        Me.cmbIPs = New System.Windows.Forms.ComboBox()
+        Me.cmbConvos = New System.Windows.Forms.ComboBox()
+        Me.btnNew = New System.Windows.Forms.Button()
+        Me.txtName = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'txtOut
@@ -83,30 +84,38 @@ Partial Class Form1
         Me.txtPort.TabIndex = 6
         Me.txtPort.Text = "15000"
         '
-        'btnFind
+        'cmbConvos
         '
-        Me.btnFind.Location = New System.Drawing.Point(13, 218)
-        Me.btnFind.Name = "btnFind"
-        Me.btnFind.Size = New System.Drawing.Size(75, 23)
-        Me.btnFind.TabIndex = 7
-        Me.btnFind.Text = "Find IPs"
-        Me.btnFind.UseVisualStyleBackColor = True
+        Me.cmbConvos.FormattingEnabled = True
+        Me.cmbConvos.Location = New System.Drawing.Point(13, 243)
+        Me.cmbConvos.Name = "cmbConvos"
+        Me.cmbConvos.Size = New System.Drawing.Size(219, 21)
+        Me.cmbConvos.TabIndex = 9
         '
-        'cmbIPs
+        'btnNew
         '
-        Me.cmbIPs.FormattingEnabled = True
-        Me.cmbIPs.Location = New System.Drawing.Point(95, 218)
-        Me.cmbIPs.Name = "cmbIPs"
-        Me.cmbIPs.Size = New System.Drawing.Size(136, 21)
-        Me.cmbIPs.TabIndex = 8
+        Me.btnNew.Location = New System.Drawing.Point(160, 214)
+        Me.btnNew.Name = "btnNew"
+        Me.btnNew.Size = New System.Drawing.Size(71, 23)
+        Me.btnNew.TabIndex = 10
+        Me.btnNew.Text = "new"
+        Me.btnNew.UseVisualStyleBackColor = True
+        '
+        'txtName
+        '
+        Me.txtName.Location = New System.Drawing.Point(13, 214)
+        Me.txtName.Name = "txtName"
+        Me.txtName.Size = New System.Drawing.Size(141, 20)
+        Me.txtName.TabIndex = 11
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(243, 251)
-        Me.Controls.Add(Me.cmbIPs)
-        Me.Controls.Add(Me.btnFind)
+        Me.ClientSize = New System.Drawing.Size(243, 278)
+        Me.Controls.Add(Me.txtName)
+        Me.Controls.Add(Me.btnNew)
+        Me.Controls.Add(Me.cmbConvos)
         Me.Controls.Add(Me.txtPort)
         Me.Controls.Add(Me.btnSend)
         Me.Controls.Add(Me.Label1)
@@ -125,6 +134,7 @@ Partial Class Form1
     Friend WithEvents Label1 As Label
     Friend WithEvents btnSend As Button
     Friend WithEvents txtPort As TextBox
-    Friend WithEvents btnFind As Button
-    Friend WithEvents cmbIPs As ComboBox
+    Friend WithEvents cmbConvos As ComboBox
+    Friend WithEvents btnNew As Button
+    Friend WithEvents txtName As TextBox
 End Class

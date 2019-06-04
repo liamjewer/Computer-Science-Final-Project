@@ -1,21 +1,23 @@
-﻿Imports System.DirectoryServices
-Imports System.Net
+﻿Imports System.Net
 Imports System.Net.Sockets
 Imports System.Text
 Imports System.Threading
-
 
 Public Class Form1
     Dim strHostName As String
     Dim strIPAddress As String
     Dim running As Boolean = False
+    Dim conversations As List(Of Conversation) = New List(Of Conversation)
+    Dim currentConvo As Conversation
+    Dim tempConvo As Conversation
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         strHostName = Dns.GetHostName()
         strIPAddress = Dns.GetHostByName(strHostName).AddressList(0).ToString()
         Me.Text = strIPAddress
-        txtIP.Text = strIPAddress
         running = True
+
+        newConvo(strIPAddress, 15000, "This computer")
 
         'run listener on separate thread
         Dim listenTrd As Thread
@@ -29,16 +31,16 @@ Public Class Form1
     End Sub
 
     Sub StartServer()
-        Dim serverSocket As New TcpListener(CInt(txtPort.Text))
+        Dim serverSocket As New TcpListener(currentConvo.getPort)
         Dim requestCount As Integer
         Dim clientSocket As TcpClient
         Dim messageReceived As Boolean = False
         While running
             messageReceived = False
             serverSocket.Start()
-            msg("Server Started")
+            Console.WriteLine("Server Started")
             clientSocket = serverSocket.AcceptTcpClient()
-            msg("Accept connection from client")
+            Console.WriteLine("Accept connection from client")
             requestCount = 0
 
             While (Not (messageReceived))
@@ -53,6 +55,7 @@ Public Class Form1
                     txtOut.Invoke(Sub()
                                       txtOut.Text += dataFromClient
                                       txtOut.Text += vbNewLine
+                                      currentConvo.setmessages(txtOut.Text)
                                   End Sub)
 
                     messageReceived = True
@@ -66,29 +69,25 @@ Public Class Form1
             End While
             clientSocket.Close()
             serverSocket.Stop()
-            msg("exit")
+            Console.WriteLine("exit")
             Console.ReadLine()
         End While
-    End Sub
-
-    Sub msg(ByVal mesg As String)
-        mesg.Trim()
-        Console.WriteLine(" >> " + mesg)
     End Sub
 
     Public Sub WriteData(ByVal data As String, ByRef IP As String)
         Try
             txtOut.Text += data.PadRight(1)
             txtOut.Text += vbNewLine
+            currentConvo.setmessages(txtOut.Text)
             txtMsg.Clear()
             Console.WriteLine("Sending message """ & data & """ to " & IP)
             Dim client As TcpClient = New TcpClient()
-            client.Connect(New IPEndPoint(IPAddress.Parse(IP), CInt(txtPort.Text)))
+            client.Connect(New IPEndPoint(IPAddress.Parse(currentConvo.getIP), currentConvo.getPort))
             Dim stream As NetworkStream = client.GetStream()
             Dim sendBytes As Byte() = Encoding.ASCII.GetBytes(data)
             stream.Write(sendBytes, 0, sendBytes.Length)
         Catch ex As Exception
-            msg(ex.ToString)
+            Console.WriteLine(ex.ToString)
         End Try
     End Sub
 
@@ -106,8 +105,42 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub BtnFind_Click(sender As Object, e As EventArgs) Handles btnFind.Click
-        'find all local adresses and put in combobox (button will be removed later)
-
+    Private Sub newConvo(IP As String, port As Integer, name As String)
+        txtName.Clear()
+        tempConvo = New Conversation(IP, port, name)
+        txtIP.Text = tempConvo.getIP
+        txtPort.Text = tempConvo.getPort
+        conversations.Add(tempConvo)
+        cmbConvos.Items.Add(tempConvo.getName)
+        cmbConvos.SelectedIndex = cmbConvos.FindString(name)
+        changeConvo(tempConvo)
     End Sub
+
+    Private Sub changeConvo(convo As Conversation)
+        currentConvo = convo
+        txtIP.Text = convo.getIP
+        txtPort.Text = convo.getPort
+        Me.Text = convo.getName
+        txtOut.Text = convo.getMessages
+    End Sub
+
+    Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
+        newConvo(txtIP.Text, txtPort.Text, txtName.Text)
+    End Sub
+
+    Private Sub cmbConvos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbConvos.SelectedIndexChanged
+        changeConvo(getConvoByName(sender.items(sender.selectedindex)))
+    End Sub
+
+    Private Function getConvoByName(name As String) As Conversation
+        For Each convo As Conversation In conversations
+            Console.WriteLine(convo.getName + ", " + name)
+            If convo.getName = name Then
+                Return convo
+                Exit For
+            Else
+                Console.WriteLine("name not found")
+            End If
+        Next
+    End Function
 End Class
