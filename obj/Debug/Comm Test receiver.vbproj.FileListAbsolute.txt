@@ -46,3 +46,15 @@ L:\coding\VB\Comp sci final\Computer-Science-Final-Project\obj\Debug\Comm Test r
 L:\coding\VB\Comp sci final\Computer-Science-Final-Project\obj\Debug\Comm Test receiver.exe
 L:\coding\VB\Comp sci final\Computer-Science-Final-Project\obj\Debug\Comm Test receiver.xml
 L:\coding\VB\Comp sci final\Computer-Science-Final-Project\obj\Debug\Comm Test receiver.pdb
+D:\coding\VB (ewwwwww)\Computer-Science-Final-Project\obj\Debug\Comm Test receiver.vbprojAssemblyReference.cache
+D:\coding\VB (ewwwwww)\Computer-Science-Final-Project\obj\Debug\Comm_Test_receiver.Form1.resources
+D:\coding\VB (ewwwwww)\Computer-Science-Final-Project\obj\Debug\Comm_Test_receiver.Resources.resources
+D:\coding\VB (ewwwwww)\Computer-Science-Final-Project\obj\Debug\Comm Test receiver.vbproj.GenerateResource.cache
+D:\coding\VB (ewwwwww)\Computer-Science-Final-Project\obj\Debug\Comm Test receiver.vbproj.CoreCompileInputs.cache
+D:\coding\VB (ewwwwww)\Computer-Science-Final-Project\obj\Debug\Comm Test receiver.exe
+D:\coding\VB (ewwwwww)\Computer-Science-Final-Project\obj\Debug\Comm Test receiver.xml
+D:\coding\VB (ewwwwww)\Computer-Science-Final-Project\obj\Debug\Comm Test receiver.pdb
+D:\coding\VB (ewwwwww)\Computer-Science-Final-Project\bin\Debug\Comm Test receiver.exe.config
+D:\coding\VB (ewwwwww)\Computer-Science-Final-Project\bin\Debug\Comm Test receiver.exe
+D:\coding\VB (ewwwwww)\Computer-Science-Final-Project\bin\Debug\Comm Test receiver.pdb
+D:\coding\VB (ewwwwww)\Computer-Science-Final-Project\bin\Debug\Comm Test receiver.xml

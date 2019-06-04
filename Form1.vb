@@ -1,7 +1,9 @@
-﻿Imports System.Net
+﻿Imports System.DirectoryServices
+Imports System.Net
 Imports System.Net.Sockets
 Imports System.Text
 Imports System.Threading
+
 
 Public Class Form1
     Dim strHostName As String
@@ -9,8 +11,8 @@ Public Class Form1
     Dim running As Boolean = False
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        strHostName = System.Net.Dns.GetHostName()
-        strIPAddress = System.Net.Dns.GetHostByName(strHostName).AddressList(0).ToString()
+        strHostName = Dns.GetHostName()
+        strIPAddress = Dns.GetHostByName(strHostName).AddressList(0).ToString()
         Me.Text = strIPAddress
         txtIP.Text = strIPAddress
         running = True
@@ -106,5 +108,6 @@ Public Class Form1
 
     Private Sub BtnFind_Click(sender As Object, e As EventArgs) Handles btnFind.Click
         'find all local adresses and put in combobox (button will be removed later)
+
     End Sub
 End Class
