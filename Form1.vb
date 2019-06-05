@@ -50,8 +50,10 @@ Public Class Form1
                     dataFromClient = dataFromClient.Substring(0, dataFromClient.Length)
                     'invoke into other thread
                     txtOut.Invoke(Sub()
-                                      txtOut.Text += dataFromClient
+                                      txtOut.Text += currentConvo.getName
                                       txtOut.Text += vbNewLine
+                                      txtOut.Text += dataFromClient
+                                      txtOut.Text += vbNewLine + vbNewLine
                                       currentConvo.setmessages(txtOut.Text)
                                   End Sub)
                     messageReceived = True
@@ -69,8 +71,10 @@ Public Class Form1
 
     Public Sub WriteData(ByVal data As String, ByRef IP As String)
         Try
-            txtOut.Text += data.PadRight(1)
+            txtOut.Text += "Me"
             txtOut.Text += vbNewLine
+            txtOut.Text += data
+            txtOut.Text += vbNewLine + vbNewLine
             currentConvo.setmessages(txtOut.Text)
             txtMsg.Clear()
             Console.WriteLine("Sending message """ & data & """ to " & IP)

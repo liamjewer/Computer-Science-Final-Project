@@ -39,10 +39,12 @@ Partial Class Form1
         '
         'txtOut
         '
+        Me.txtOut.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.txtOut.Font = New System.Drawing.Font("Monospac821 BT", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtOut.Location = New System.Drawing.Point(13, 12)
         Me.txtOut.Multiline = True
         Me.txtOut.Name = "txtOut"
+        Me.txtOut.ReadOnly = True
         Me.txtOut.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.txtOut.Size = New System.Drawing.Size(541, 143)
         Me.txtOut.TabIndex = 1
