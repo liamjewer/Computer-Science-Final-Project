@@ -32,7 +32,6 @@ Public Class Form1
 
     Sub StartServer()
         Dim serverSocket As New TcpListener(currentConvo.getPort)
-        Dim requestCount As Integer
         Dim clientSocket As TcpClient
         Dim messageReceived As Boolean = False
         While running
@@ -41,11 +40,9 @@ Public Class Form1
             Console.WriteLine("Server Started")
             clientSocket = serverSocket.AcceptTcpClient()
             Console.WriteLine("Accept connection from client")
-            requestCount = 0
 
             While (Not (messageReceived))
                 Try
-                    requestCount = requestCount + 1
                     Dim networkStream As NetworkStream = clientSocket.GetStream()
                     Dim bytesFrom(10024) As Byte
                     networkStream.Read(bytesFrom, 0, bytesFrom.Length)
@@ -57,11 +54,7 @@ Public Class Form1
                                       txtOut.Text += vbNewLine
                                       currentConvo.setmessages(txtOut.Text)
                                   End Sub)
-
                     messageReceived = True
-                    Dim serverResponse As String = "Server response " + Convert.ToString(requestCount)
-                    Dim sendBytes As [Byte]() = Encoding.ASCII.GetBytes(serverResponse)
-                    networkStream.Write(sendBytes, 0, sendBytes.Length)
                     networkStream.Flush()
                 Catch ex As Exception
                     End
@@ -87,7 +80,7 @@ Public Class Form1
             Dim sendBytes As Byte() = Encoding.ASCII.GetBytes(data)
             stream.Write(sendBytes, 0, sendBytes.Length)
         Catch ex As Exception
-            Console.WriteLine(ex.ToString)
+            MsgBox("Could not contact, please make sure contact is listening")
         End Try
     End Sub
 
