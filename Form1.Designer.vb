@@ -22,12 +22,13 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.txtOut = New System.Windows.Forms.TextBox()
         Me.txtMsg = New System.Windows.Forms.TextBox()
         Me.btnSend = New System.Windows.Forms.Button()
         Me.cmbConvos = New System.Windows.Forms.ComboBox()
-        Me.btnNew = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.btnMenu = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'txtOut
@@ -67,15 +68,6 @@ Partial Class Form1
         Me.cmbConvos.Size = New System.Drawing.Size(124, 21)
         Me.cmbConvos.TabIndex = 9
         '
-        'btnNew
-        '
-        Me.btnNew.Location = New System.Drawing.Point(260, 188)
-        Me.btnNew.Name = "btnNew"
-        Me.btnNew.Size = New System.Drawing.Size(294, 21)
-        Me.btnNew.TabIndex = 10
-        Me.btnNew.Text = "New Contact"
-        Me.btnNew.UseVisualStyleBackColor = True
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -85,17 +77,27 @@ Partial Class Form1
         Me.Label4.TabIndex = 14
         Me.Label4.Text = "Select Contact:"
         '
+        'btnMenu
+        '
+        Me.btnMenu.Location = New System.Drawing.Point(479, 191)
+        Me.btnMenu.Name = "btnMenu"
+        Me.btnMenu.Size = New System.Drawing.Size(75, 23)
+        Me.btnMenu.TabIndex = 15
+        Me.btnMenu.Text = "Menu"
+        Me.btnMenu.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(566, 220)
+        Me.Controls.Add(Me.btnMenu)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.btnNew)
         Me.Controls.Add(Me.cmbConvos)
         Me.Controls.Add(Me.btnSend)
         Me.Controls.Add(Me.txtMsg)
         Me.Controls.Add(Me.txtOut)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form1"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
@@ -106,6 +108,6 @@ Partial Class Form1
     Friend WithEvents txtMsg As TextBox
     Friend WithEvents btnSend As Button
     Friend WithEvents cmbConvos As ComboBox
-    Friend WithEvents btnNew As Button
     Friend WithEvents Label4 As Label
+    Friend WithEvents btnMenu As Button
 End Class

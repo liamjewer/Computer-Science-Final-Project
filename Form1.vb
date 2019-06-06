@@ -7,7 +7,8 @@ Public Class Form1
     Dim strHostName As String
     Dim strIPAddress As String
     Dim running As Boolean = False
-    Dim conversations As List(Of Conversation) = New List(Of Conversation)
+    Public conversations As List(Of Conversation) = New List(Of Conversation)
+    Public groups As List(Of Group) = New List(Of Group)
     Dim currentConvo As Conversation
     Dim tempConvo As Conversation
 
@@ -124,10 +125,6 @@ Public Class Form1
         txtOut.Text = convo.getMessages
     End Sub
 
-    Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
-        popupNew.Show()
-    End Sub
-
     Private Sub cmbConvos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbConvos.SelectedIndexChanged
         changeConvo(getConvoByName(sender.items(sender.selectedindex)))
     End Sub
@@ -143,4 +140,20 @@ Public Class Form1
             End If
         Next
     End Function
+
+    Private Function getConvoByName(name As String) As Conversation
+        For Each convo As Conversation In conversations
+            Console.WriteLine(convo.getName + ", " + name)
+            If convo.getName = name Then
+                Return convo
+                Exit For
+            Else
+                Console.WriteLine("name not found")
+            End If
+        Next
+    End Function
+
+    Private Sub btnMenu_Click(sender As Object, e As EventArgs) Handles btnMenu.Click
+        appMenu.Show()
+    End Sub
 End Class

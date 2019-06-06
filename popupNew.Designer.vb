@@ -29,6 +29,9 @@ Partial Class popupNew
         Me.txtPort = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtIP = New System.Windows.Forms.TextBox()
+        Me.btnNewGroup = New System.Windows.Forms.Button()
+        Me.btnAdd = New System.Windows.Forms.Button()
+        Me.LBContacts = New System.Windows.Forms.CheckedListBox()
         Me.SuspendLayout()
         '
         'Label3
@@ -43,7 +46,7 @@ Partial Class popupNew
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(34, 64)
+        Me.Label2.Location = New System.Drawing.Point(12, 64)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(29, 13)
         Me.Label2.TabIndex = 21
@@ -58,7 +61,7 @@ Partial Class popupNew
         '
         'btnNew
         '
-        Me.btnNew.Location = New System.Drawing.Point(56, 87)
+        Me.btnNew.Location = New System.Drawing.Point(12, 87)
         Me.btnNew.Name = "btnNew"
         Me.btnNew.Size = New System.Drawing.Size(71, 23)
         Me.btnNew.TabIndex = 19
@@ -67,7 +70,7 @@ Partial Class popupNew
         '
         'txtPort
         '
-        Me.txtPort.Location = New System.Drawing.Point(114, 61)
+        Me.txtPort.Location = New System.Drawing.Point(47, 61)
         Me.txtPort.Name = "txtPort"
         Me.txtPort.Size = New System.Drawing.Size(41, 20)
         Me.txtPort.TabIndex = 18
@@ -76,7 +79,7 @@ Partial Class popupNew
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(43, 38)
+        Me.Label1.Location = New System.Drawing.Point(12, 38)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(20, 13)
         Me.Label1.TabIndex = 17
@@ -84,16 +87,45 @@ Partial Class popupNew
         '
         'txtIP
         '
-        Me.txtIP.Location = New System.Drawing.Point(69, 35)
+        Me.txtIP.Location = New System.Drawing.Point(38, 35)
         Me.txtIP.Name = "txtIP"
         Me.txtIP.Size = New System.Drawing.Size(86, 20)
         Me.txtIP.TabIndex = 16
+        '
+        'btnNewGroup
+        '
+        Me.btnNewGroup.Location = New System.Drawing.Point(307, 87)
+        Me.btnNewGroup.Name = "btnNewGroup"
+        Me.btnNewGroup.Size = New System.Drawing.Size(71, 23)
+        Me.btnNewGroup.TabIndex = 23
+        Me.btnNewGroup.Text = "new Group"
+        Me.btnNewGroup.UseVisualStyleBackColor = True
+        '
+        'btnAdd
+        '
+        Me.btnAdd.Location = New System.Drawing.Point(230, 87)
+        Me.btnAdd.Name = "btnAdd"
+        Me.btnAdd.Size = New System.Drawing.Size(71, 23)
+        Me.btnAdd.TabIndex = 24
+        Me.btnAdd.Text = "Add member"
+        Me.btnAdd.UseVisualStyleBackColor = True
+        '
+        'LBContacts
+        '
+        Me.LBContacts.FormattingEnabled = True
+        Me.LBContacts.Location = New System.Drawing.Point(230, 6)
+        Me.LBContacts.Name = "LBContacts"
+        Me.LBContacts.Size = New System.Drawing.Size(148, 79)
+        Me.LBContacts.TabIndex = 26
         '
         'popupNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(197, 116)
+        Me.ClientSize = New System.Drawing.Size(390, 122)
+        Me.Controls.Add(Me.LBContacts)
+        Me.Controls.Add(Me.btnAdd)
+        Me.Controls.Add(Me.btnNewGroup)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtName)
@@ -115,4 +147,7 @@ Partial Class popupNew
     Friend WithEvents txtPort As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents txtIP As TextBox
+    Friend WithEvents btnNewGroup As Button
+    Friend WithEvents btnAdd As Button
+    Friend WithEvents LBContacts As CheckedListBox
 End Class
