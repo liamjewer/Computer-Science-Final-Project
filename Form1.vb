@@ -50,11 +50,15 @@ Public Class Form1
                     dataFromClient = dataFromClient.Substring(0, dataFromClient.Length)
                     'invoke into other thread
                     txtOut.Invoke(Sub()
+                                      If Not (txtOut.Text = vbNullString) Then
+                                          txtOut.Text += vbNewLine + vbNewLine
+                                      End If
                                       txtOut.Text += currentConvo.getName
                                       txtOut.Text += vbNewLine
                                       txtOut.Text += dataFromClient
-                                      txtOut.Text += vbNewLine + vbNewLine
                                       currentConvo.setmessages(txtOut.Text)
+                                      txtOut.SelectionStart = txtOut.TextLength
+                                      txtOut.ScrollToCaret()
                                   End Sub)
                     messageReceived = True
                     networkStream.Flush()
@@ -71,11 +75,15 @@ Public Class Form1
 
     Public Sub WriteData(ByVal data As String, ByRef IP As String)
         Try
+            If Not (txtOut.Text = vbNullString) Then
+                txtOut.Text += vbNewLine + vbNewLine
+            End If
             txtOut.Text += "Me"
             txtOut.Text += vbNewLine
             txtOut.Text += data
-            txtOut.Text += vbNewLine + vbNewLine
             currentConvo.setmessages(txtOut.Text)
+            txtOut.SelectionStart = txtOut.TextLength
+            txtOut.ScrollToCaret()
             txtMsg.Clear()
             Console.WriteLine("Sending message """ & data & """ to " & IP)
             Dim client As TcpClient = New TcpClient()
@@ -89,24 +97,21 @@ Public Class Form1
     End Sub
 
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
-        If Not (txtMsg.Text = vbNullString) AndAlso Not (txtIP.Text = vbNullString) Then
-            WriteData(txtMsg.Text, txtIP.Text)
+        If Not (txtMsg.Text = vbNullString) AndAlso Not (currentConvo.getIP = vbNullString) Then
+            WriteData(txtMsg.Text, currentConvo.getIP)
         End If
     End Sub
 
     Private Sub txtMsg_KeyDown(sender As Object, e As KeyEventArgs) Handles txtMsg.KeyDown
         If e.KeyCode = Keys.Enter Then
-            If Not (txtMsg.Text = vbNullString) AndAlso Not (txtIP.Text = vbNullString) Then
-                WriteData(txtMsg.Text, txtIP.Text)
+            If Not (txtMsg.Text = vbNullString) AndAlso Not (currentConvo.getIP = vbNullString) Then
+                WriteData(txtMsg.Text, currentConvo.getIP)
             End If
         End If
     End Sub
 
-    Private Sub newConvo(IP As String, port As Integer, name As String)
-        txtName.Clear()
+    Public Sub newConvo(IP As String, port As Integer, name As String)
         tempConvo = New Conversation(IP, port, name)
-        txtIP.Text = tempConvo.getIP
-        txtPort.Text = tempConvo.getPort
         conversations.Add(tempConvo)
         cmbConvos.Items.Add(tempConvo.getName)
         cmbConvos.SelectedIndex = cmbConvos.FindString(name)
@@ -115,14 +120,12 @@ Public Class Form1
 
     Private Sub changeConvo(convo As Conversation)
         currentConvo = convo
-        txtIP.Text = convo.getIP
-        txtPort.Text = convo.getPort
         Me.Text = convo.getName
         txtOut.Text = convo.getMessages
     End Sub
 
     Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
-        newConvo(txtIP.Text, txtPort.Text, txtName.Text)
+        popupNew.Show()
     End Sub
 
     Private Sub cmbConvos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbConvos.SelectedIndexChanged
