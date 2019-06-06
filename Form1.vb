@@ -8,7 +8,6 @@ Public Class Form1
     Dim strIPAddress As String
     Dim running As Boolean = False
     Public conversations As List(Of Conversation) = New List(Of Conversation)
-    Public groups As List(Of Group) = New List(Of Group)
     Dim currentConvo As Conversation
     Dim tempConvo As Conversation
 
@@ -119,6 +118,14 @@ Public Class Form1
         changeConvo(tempConvo)
     End Sub
 
+    Public Sub newGroup(IPs() As String, port As Integer, name As String)
+        tempConvo = New Conversation(IPs, port, name)
+        conversations.Add(tempConvo)
+        cmbConvos.Items.Add(tempConvo.getName)
+        'cmbConvos.SelectedIndex = cmbConvos.FindString(name)
+        'changeConvo(tempConvo)
+    End Sub
+
     Private Sub changeConvo(convo As Conversation)
         currentConvo = convo
         Me.Text = convo.getName
@@ -129,19 +136,7 @@ Public Class Form1
         changeConvo(getConvoByName(sender.items(sender.selectedindex)))
     End Sub
 
-    Private Function getConvoByName(name As String) As Conversation
-        For Each convo As Conversation In conversations
-            Console.WriteLine(convo.getName + ", " + name)
-            If convo.getName = name Then
-                Return convo
-                Exit For
-            Else
-                Console.WriteLine("name not found")
-            End If
-        Next
-    End Function
-
-    Private Function getConvoByName(name As String) As Conversation
+    Public Function getConvoByName(name As String) As Conversation
         For Each convo As Conversation In conversations
             Console.WriteLine(convo.getName + ", " + name)
             If convo.getName = name Then
