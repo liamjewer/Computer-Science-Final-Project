@@ -14,7 +14,7 @@
     Public Sub New(IPs() As String, port As Integer, name As String)
         Me.port = port
         Me.IPs = IPs
-        Me.name = "(group) " + name
+        Me.name = name
     End Sub
 
     Public Function getIP() As String

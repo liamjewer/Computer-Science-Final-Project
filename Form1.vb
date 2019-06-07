@@ -73,32 +73,58 @@ Public Class Form1
         End While
     End Sub
 
-    Public Sub WriteData(ByVal data As String, ByRef IP As String)
-        Try
-            If Not (txtOut.Text = vbNullString) Then
-                txtOut.Text += vbNewLine + vbNewLine
-            End If
-            txtOut.Text += "Me"
-            txtOut.Text += vbNewLine
-            txtOut.Text += data
-            currentConvo.setmessages(txtOut.Text)
-            txtOut.SelectionStart = txtOut.TextLength
-            txtOut.ScrollToCaret()
-            txtMsg.Clear()
-            Console.WriteLine("Sending message """ & data & """ to " & IP)
-            Dim client As TcpClient = New TcpClient()
-            client.Connect(New IPEndPoint(IPAddress.Parse(currentConvo.getIP), currentConvo.getPort))
-            Dim stream As NetworkStream = client.GetStream()
-            Dim sendBytes As Byte() = Encoding.ASCII.GetBytes(data)
-            stream.Write(sendBytes, 0, sendBytes.Length)
-        Catch ex As Exception
-            MsgBox("Could not contact, please make sure contact is listening")
-        End Try
+    Public Sub WriteData(ByVal data As String, ByRef name As String)
+        MsgBox(name.Substring(0, 6))
+        If name.Substring(0, 6) = "(group)" Then
+            For Each Adress As String In currentConvo.getIPs
+                Try
+                    If Not (txtOut.Text = vbNullString) Then
+                        txtOut.Text += vbNewLine + vbNewLine
+                    End If
+                    txtOut.Text += "Me"
+                    txtOut.Text += vbNewLine
+                    txtOut.Text += data
+                    currentConvo.setmessages(txtOut.Text)
+                    txtOut.SelectionStart = txtOut.TextLength
+                    txtOut.ScrollToCaret()
+                    txtMsg.Clear()
+                    Console.WriteLine("Sending message """ & data & """ to " & Adress)
+                    Dim client As TcpClient = New TcpClient()
+                    client.Connect(New IPEndPoint(IPAddress.Parse(currentConvo.getIP), currentConvo.getPort))
+                    Dim stream As NetworkStream = client.GetStream()
+                    Dim sendBytes As Byte() = Encoding.ASCII.GetBytes(data)
+                    stream.Write(sendBytes, 0, sendBytes.Length)
+                Catch ex As Exception
+                    MsgBox("Could not contact, please make sure contact is listening")
+                End Try
+            Next
+        Else
+            Try
+                If Not (txtOut.Text = vbNullString) Then
+                    txtOut.Text += vbNewLine + vbNewLine
+                End If
+                txtOut.Text += "Me"
+                txtOut.Text += vbNewLine
+                txtOut.Text += data
+                currentConvo.setmessages(txtOut.Text)
+                txtOut.SelectionStart = txtOut.TextLength
+                txtOut.ScrollToCaret()
+                txtMsg.Clear()
+                Console.WriteLine("Sending message """ & data & """ to " & getConvoByName(name).getIP)
+                Dim client As TcpClient = New TcpClient()
+                client.Connect(New IPEndPoint(IPAddress.Parse(currentConvo.getIP), currentConvo.getPort))
+                Dim stream As NetworkStream = client.GetStream()
+                Dim sendBytes As Byte() = Encoding.ASCII.GetBytes(data)
+                stream.Write(sendBytes, 0, sendBytes.Length)
+            Catch ex As Exception
+                MsgBox("Could not contact, please make sure contact is listening")
+            End Try
+        End If
     End Sub
 
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
         If Not (txtMsg.Text = vbNullString) AndAlso Not (currentConvo.getIP = vbNullString) Then
-            WriteData(txtMsg.Text, currentConvo.getIP)
+            WriteData(txtMsg.Text, currentConvo.getName)
         End If
     End Sub
 
@@ -119,11 +145,12 @@ Public Class Form1
     End Sub
 
     Public Sub newGroup(IPs() As String, port As Integer, name As String)
+        name = "(group)" + name
         tempConvo = New Conversation(IPs, port, name)
         conversations.Add(tempConvo)
         cmbConvos.Items.Add(tempConvo.getName)
-        'cmbConvos.SelectedIndex = cmbConvos.FindString(name)
-        'changeConvo(tempConvo)
+        cmbConvos.SelectedIndex = cmbConvos.FindString(name)
+        changeConvo(tempConvo)
     End Sub
 
     Private Sub changeConvo(convo As Conversation)
@@ -137,13 +164,16 @@ Public Class Form1
     End Sub
 
     Public Function getConvoByName(name As String) As Conversation
+        For Each c As Conversation In conversations
+            Console.WriteLine(c.getName)
+        Next
         For Each convo As Conversation In conversations
-            Console.WriteLine(convo.getName + ", " + name)
+            Console.WriteLine(currentConvo.getName)
             If convo.getName = name Then
                 Return convo
                 Exit For
             Else
-                Console.WriteLine("name not found")
+                Console.WriteLine("name not found: " + name)
             End If
         Next
     End Function
