@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class popupNew
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class popupNew
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -29,12 +29,6 @@ Partial Class popupNew
         Me.txtPort = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtIP = New System.Windows.Forms.TextBox()
-        Me.btnNewGroup = New System.Windows.Forms.Button()
-        Me.LBContacts = New System.Windows.Forms.CheckedListBox()
-        Me.txtGroupName = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.txtGroupPort = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label3
@@ -95,66 +89,11 @@ Partial Class popupNew
         Me.txtIP.Size = New System.Drawing.Size(86, 20)
         Me.txtIP.TabIndex = 16
         '
-        'btnNewGroup
-        '
-        Me.btnNewGroup.Location = New System.Drawing.Point(230, 142)
-        Me.btnNewGroup.Name = "btnNewGroup"
-        Me.btnNewGroup.Size = New System.Drawing.Size(148, 23)
-        Me.btnNewGroup.TabIndex = 23
-        Me.btnNewGroup.Text = "new Group"
-        Me.btnNewGroup.UseVisualStyleBackColor = True
-        '
-        'LBContacts
-        '
-        Me.LBContacts.FormattingEnabled = True
-        Me.LBContacts.Location = New System.Drawing.Point(230, 6)
-        Me.LBContacts.Name = "LBContacts"
-        Me.LBContacts.Size = New System.Drawing.Size(148, 79)
-        Me.LBContacts.TabIndex = 26
-        '
-        'txtGroupName
-        '
-        Me.txtGroupName.Location = New System.Drawing.Point(230, 116)
-        Me.txtGroupName.Name = "txtGroupName"
-        Me.txtGroupName.Size = New System.Drawing.Size(148, 20)
-        Me.txtGroupName.TabIndex = 27
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(186, 119)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(38, 13)
-        Me.Label4.TabIndex = 28
-        Me.Label4.Text = "Name:"
-        '
-        'txtGroupPort
-        '
-        Me.txtGroupPort.Location = New System.Drawing.Point(230, 90)
-        Me.txtGroupPort.Name = "txtGroupPort"
-        Me.txtGroupPort.Size = New System.Drawing.Size(148, 20)
-        Me.txtGroupPort.TabIndex = 29
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(195, 93)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(29, 13)
-        Me.Label5.TabIndex = 30
-        Me.Label5.Text = "Port:"
-        '
         'popupNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(390, 177)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.txtGroupPort)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.txtGroupName)
-        Me.Controls.Add(Me.LBContacts)
-        Me.Controls.Add(Me.btnNewGroup)
+        Me.ClientSize = New System.Drawing.Size(192, 119)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtName)
@@ -176,10 +115,4 @@ Partial Class popupNew
     Friend WithEvents txtPort As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents txtIP As TextBox
-    Friend WithEvents btnNewGroup As Button
-    Friend WithEvents LBContacts As CheckedListBox
-    Friend WithEvents txtGroupName As TextBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents txtGroupPort As TextBox
-    Friend WithEvents Label5 As Label
 End Class
