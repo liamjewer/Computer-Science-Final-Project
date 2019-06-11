@@ -48,6 +48,7 @@ Public Class Form1
                     networkStream.Read(bytesFrom, 0, bytesFrom.Length)
                     Dim dataFromClient As String = System.Text.Encoding.ASCII.GetString(bytesFrom)
                     dataFromClient = dataFromClient.Substring(0, dataFromClient.Length)
+                    dataFromClient = decrypt(dataFromClient)
                     'invoke into other thread
                     txtOut.Invoke(Sub()
                                       If Not (txtOut.Text = vbNullString) Then
@@ -74,6 +75,7 @@ Public Class Form1
     End Sub
 
     Public Sub WriteData(ByVal data As String, ByRef name As String)
+        data = encrypt(data)
         MsgBox(name.Substring(0, 6))
         If name.Substring(0, 6) = "(group)" Then
             For Each Adress As String In currentConvo.getIPs
@@ -168,7 +170,6 @@ Public Class Form1
             Console.WriteLine(c.getName)
         Next
         For Each convo As Conversation In conversations
-            Console.WriteLine(currentConvo.getName)
             If convo.getName = name Then
                 Return convo
                 Exit For
@@ -181,4 +182,71 @@ Public Class Form1
     Private Sub btnMenu_Click(sender As Object, e As EventArgs) Handles btnMenu.Click
         appMenu.Show()
     End Sub
+
+    Private Sub btnEmote_Click(sender As Object, e As EventArgs) Handles btnEmote.Click
+        Dim em As emote = New emote(Image.FromFile("C:\Users\liam\Desktop\images.png"))
+    End Sub
+
+    Function encrypt(str As String) As String
+        Dim chars As Char() = str.ToCharArray
+        Dim asciis As List(Of Integer) = New List(Of Integer)
+        Dim encrypted As String = ""
+        For Each c As Char In chars
+            If (Asc(c) >= 65 And Asc(c) <= 90) Or (Asc(c) >= 97 And Asc(c) <= 122) Then
+                If Asc(c) = 88 Then
+                    asciis.Add(65)
+                ElseIf Asc(c) = 89 Then
+                    asciis.Add(65 + 1)
+                ElseIf Asc(c) = 90 Then
+                    asciis.Add(65 + 2)
+                ElseIf Asc(c) = 120 Then
+                    asciis.Add(97)
+                ElseIf Asc(c) = 121 Then
+                    asciis.Add(97 + 1)
+                ElseIf Asc(c) = 122 Then
+                    asciis.Add(97 + 2)
+                Else
+                    asciis.Add(Asc(c) + 3)
+                End If
+            Else
+                asciis.Add(Asc(c))
+            End If
+        Next
+        For Each i As Integer In asciis
+            encrypted += Chr(i)
+        Next
+        Return encrypted
+    End Function
+
+    Private Function decrypt(str As String) As String
+        Dim chars() = str.ToCharArray
+        Dim asciis As List(Of Integer) = New List(Of Integer)
+        Dim decrypted As String = ""
+
+        For Each c As Char In chars
+            If (Asc(c) >= 65 And Asc(c) <= 90) Or (Asc(c) >= 97 And Asc(c) <= 122) Then
+                If Asc(c) = 65 Then
+                    asciis.Add(88)
+                ElseIf Asc(c) = 65 + 1 Then
+                    asciis.Add(89)
+                ElseIf Asc(c) = 65 + 2 Then
+                    asciis.Add(90)
+                ElseIf Asc(c) = 97 Then
+                    asciis.Add(120)
+                ElseIf Asc(c) = 97 + 1 Then
+                    asciis.Add(121)
+                ElseIf Asc(c) = 97 + 2 Then
+                    asciis.Add(122)
+                Else
+                    asciis.Add(Asc(c) - 3)
+                End If
+            Else
+                asciis.Add(Asc(c))
+            End If
+        Next
+        For Each i As Integer In asciis
+            decrypted += Chr(i)
+        Next
+        Return decrypted
+    End Function
 End Class
