@@ -93,6 +93,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conversation.vb" />
+    <Compile Include="emote.Designer.vb">
+      <DependentUpon>emote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="emote.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="emotes.Designer.vb">
+      <DependentUpon>emotes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="emotes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +141,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="emote.resx">
+      <DependentUpon>emote.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
