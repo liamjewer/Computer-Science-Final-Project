@@ -33,15 +33,23 @@ Public Class Form1
     End Sub
 
     Sub StartServer()
-        Dim serverSocket As New TcpListener(currentConvo.getPort)
+        Dim serversocket
+        Try
+            serversocket = New TcpListener(currentConvo.getPort)
+        Catch
+            serversocket = New TcpListener(15000)
+        End Try
         Dim clientSocket As TcpClient
         Dim messageReceived As Boolean = False
+        Dim clientip As String
+        Dim found As Boolean = False
         While running
             messageReceived = False
             serverSocket.Start()
             Console.WriteLine("Server Started")
             clientSocket = serverSocket.AcceptTcpClient()
-            Console.WriteLine("received from: " + DirectCast(clientSocket.Client.RemoteEndPoint, IPEndPoint).Address.ToString)
+            clientip = DirectCast(clientSocket.Client.RemoteEndPoint, IPEndPoint).Address.ToString
+            Console.WriteLine("received from: " + clientip)
             Console.WriteLine("Accept connection from client")
 
             While (Not (messageReceived))
@@ -53,20 +61,22 @@ Public Class Form1
                     dataFromClient = dataFromClient.Substring(0, dataFromClient.Length)
                     dataFromClient = decrypt(dataFromClient)
                     For Each c As Conversation In conversations
-                        If DirectCast(clientSocket.Client.RemoteEndPoint, IPEndPoint).Address.ToString = c.getIP() Then
+                        If clientip = c.getIP() Then
+                            found = True
                             If Not (c.messages = vbNullString) Then
                                 c.messages += vbNewLine + vbNewLine
                             End If
                             c.messages += currentConvo.getName
                             c.messages += vbNewLine
                             c.messages += dataFromClient
-                        Else
-
                         End If
                     Next
+                    If found = False Then
+                        newConvo(clientip, 15000, clientip)
+                    End If
                     'invoke into other thread
                     txtOut.Invoke(Sub()
-                                      txtOut.Text =
+                                      txtOut.Text = currentConvo.getMessages()
                                       txtOut.SelectionStart = txtOut.TextLength
                                       txtOut.ScrollToCaret()
                                   End Sub)
@@ -125,8 +135,6 @@ Public Class Form1
         tempConvo = New Conversation(IP, port, name)
         conversations.Add(tempConvo)
         cmbConvos.Items.Add(tempConvo.getName)
-        cmbConvos.SelectedIndex = cmbConvos.FindString(name)
-        changeConvo(tempConvo)
     End Sub
 
     Private Sub changeConvo(convo As Conversation)
