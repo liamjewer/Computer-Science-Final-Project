@@ -11,6 +11,7 @@ Public Class Form1
     Dim currentConvo As Conversation
     Dim tempConvo As Conversation
     Dim i As Integer = 0
+    Dim tempemote As emote
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         strHostName = Dns.GetHostName()
@@ -40,6 +41,7 @@ Public Class Form1
             serverSocket.Start()
             Console.WriteLine("Server Started")
             clientSocket = serverSocket.AcceptTcpClient()
+            Console.WriteLine("received from: " + DirectCast(clientSocket.Client.RemoteEndPoint, IPEndPoint).Address.ToString)
             Console.WriteLine("Accept connection from client")
 
             While (Not (messageReceived))
@@ -50,15 +52,21 @@ Public Class Form1
                     Dim dataFromClient As String = System.Text.Encoding.ASCII.GetString(bytesFrom)
                     dataFromClient = dataFromClient.Substring(0, dataFromClient.Length)
                     dataFromClient = decrypt(dataFromClient)
+                    For Each c As Conversation In conversations
+                        If DirectCast(clientSocket.Client.RemoteEndPoint, IPEndPoint).Address.ToString = c.getIP() Then
+                            If Not (c.messages = vbNullString) Then
+                                c.messages += vbNewLine + vbNewLine
+                            End If
+                            c.messages += currentConvo.getName
+                            c.messages += vbNewLine
+                            c.messages += dataFromClient
+                        Else
+
+                        End If
+                    Next
                     'invoke into other thread
                     txtOut.Invoke(Sub()
-                                      If Not (txtOut.Text = vbNullString) Then
-                                          txtOut.Text += vbNewLine + vbNewLine
-                                      End If
-                                      txtOut.Text += currentConvo.getName
-                                      txtOut.Text += vbNewLine
-                                      txtOut.Text += dataFromClient
-                                      currentConvo.setmessages(txtOut.Text)
+                                      txtOut.Text =
                                       txtOut.SelectionStart = txtOut.TextLength
                                       txtOut.ScrollToCaret()
                                   End Sub)
@@ -150,7 +158,7 @@ Public Class Form1
     End Sub
 
     Private Sub btnEmote_Click(sender As Object, e As EventArgs) Handles btnEmote.Click
-        emote.play(i)
+        tempemote = New emote(i)
         i += 1
     End Sub
 

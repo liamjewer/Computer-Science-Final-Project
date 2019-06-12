@@ -2,7 +2,7 @@
     Dim IP As String
     Dim port As Integer
     Dim name As String
-    Dim messages As String
+    Public messages As String
 
     Public Sub New(IP As String, port As Integer, name As String)
         Me.port = port
