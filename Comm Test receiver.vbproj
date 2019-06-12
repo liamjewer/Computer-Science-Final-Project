@@ -99,12 +99,6 @@
     <Compile Include="emote.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="emotes.Designer.vb">
-      <DependentUpon>emotes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="emotes.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>

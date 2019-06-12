@@ -10,6 +10,7 @@ Public Class Form1
     Public conversations As List(Of Conversation) = New List(Of Conversation)
     Dim currentConvo As Conversation
     Dim tempConvo As Conversation
+    Dim i As Integer = 0
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         strHostName = Dns.GetHostName()
@@ -75,7 +76,6 @@ Public Class Form1
     End Sub
 
     Public Sub WriteData(ByVal data As String, ByRef name As String)
-<<<<<<< HEAD
         Try
             If Not (txtOut.Text = vbNullString) Then
                 txtOut.Text += vbNewLine + vbNewLine
@@ -87,6 +87,7 @@ Public Class Form1
             txtOut.SelectionStart = txtOut.TextLength
             txtOut.ScrollToCaret()
             txtMsg.Clear()
+            data = encrypt(data)
             Console.WriteLine("Sending message """ & data & """ to " & getConvoByName(name).getIP)
             Dim client As TcpClient = New TcpClient()
             client.Connect(New IPEndPoint(IPAddress.Parse(currentConvo.getIP), currentConvo.getPort))
@@ -96,55 +97,6 @@ Public Class Form1
         Catch ex As Exception
             MsgBox("Could not contact, please make sure contact is listening")
         End Try
-=======
-        data = encrypt(data)
-        MsgBox(name.Substring(0, 6))
-        If name.Substring(0, 6) = "(group)" Then
-            For Each Adress As String In currentConvo.getIPs
-                Try
-                    If Not (txtOut.Text = vbNullString) Then
-                        txtOut.Text += vbNewLine + vbNewLine
-                    End If
-                    txtOut.Text += "Me"
-                    txtOut.Text += vbNewLine
-                    txtOut.Text += data
-                    currentConvo.setmessages(txtOut.Text)
-                    txtOut.SelectionStart = txtOut.TextLength
-                    txtOut.ScrollToCaret()
-                    txtMsg.Clear()
-                    Console.WriteLine("Sending message """ & data & """ to " & Adress)
-                    Dim client As TcpClient = New TcpClient()
-                    client.Connect(New IPEndPoint(IPAddress.Parse(currentConvo.getIP), currentConvo.getPort))
-                    Dim stream As NetworkStream = client.GetStream()
-                    Dim sendBytes As Byte() = Encoding.ASCII.GetBytes(data)
-                    stream.Write(sendBytes, 0, sendBytes.Length)
-                Catch ex As Exception
-                    MsgBox("Could not contact, please make sure contact is listening")
-                End Try
-            Next
-        Else
-            Try
-                If Not (txtOut.Text = vbNullString) Then
-                    txtOut.Text += vbNewLine + vbNewLine
-                End If
-                txtOut.Text += "Me"
-                txtOut.Text += vbNewLine
-                txtOut.Text += data
-                currentConvo.setmessages(txtOut.Text)
-                txtOut.SelectionStart = txtOut.TextLength
-                txtOut.ScrollToCaret()
-                txtMsg.Clear()
-                Console.WriteLine("Sending message """ & data & """ to " & getConvoByName(name).getIP)
-                Dim client As TcpClient = New TcpClient()
-                client.Connect(New IPEndPoint(IPAddress.Parse(currentConvo.getIP), currentConvo.getPort))
-                Dim stream As NetworkStream = client.GetStream()
-                Dim sendBytes As Byte() = Encoding.ASCII.GetBytes(data)
-                stream.Write(sendBytes, 0, sendBytes.Length)
-            Catch ex As Exception
-                MsgBox("Could not contact, please make sure contact is listening")
-            End Try
-        End If
->>>>>>> 4854cd6bd6305857d838fd2ab3a813d3ab636683
     End Sub
 
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
@@ -198,7 +150,8 @@ Public Class Form1
     End Sub
 
     Private Sub btnEmote_Click(sender As Object, e As EventArgs) Handles btnEmote.Click
-        Dim em As emote = New emote(Image.FromFile("C:\Users\liam\Desktop\images.png"))
+        emote.play(i)
+        i += 1
     End Sub
 
     Function encrypt(str As String) As String

@@ -1,6 +1,8 @@
 ﻿Public Class emote
-    Public Sub New(img As Image)
+    Public Sub play(num As Integer)
+        If num < Emotes.Images.Count Then
+            picEmote.Image = Emotes.Images(num)
+        End If
         Me.Show()
-        picEmote.Image = img
     End Sub
 End Class
