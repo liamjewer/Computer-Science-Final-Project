@@ -71,27 +71,29 @@ Public Class Form1
                         End If
                     End If
                 Next
-                If found = False Then
+                If dataFromClient.ToCharArray.GetValue(0) = "|" Then
                     txtOut.Invoke(Sub()
-                                      newConvo(clientip, 15000, clientip)
-                                      tempConvo = getConvoByName(clientip)
-                                      tempConvo.messages += tempConvo.getName
-                                      tempConvo.messages += vbNewLine
-                                      tempConvo.messages += dataFromClient
+                                      tempemote = New emote(dataFromClient.Remove(0, 1))
                                   End Sub)
-                    MsgBox("new message from:" + vbNewLine + clientip + vbNewLine + dataFromClient)
-                End If
-                'invoke into other thread
-                txtOut.Invoke(Sub()
-                                  txtOut.Text = currentConvo.getMessages()
-                                  txtOut.SelectionStart = txtOut.TextLength
+                Else
+                    If found = False Then
+                        txtOut.Invoke(Sub()
+                                          newConvo(clientip, 15000, clientip)
+                                          tempConvo = getConvoByName(clientip)
+                                          tempConvo.messages += tempConvo.getName
+                                          tempConvo.messages += vbNewLine
+                                          tempConvo.messages += dataFromClient
+                                      End Sub)
+                        MsgBox("new message from:" + vbNewLine + clientip + vbNewLine + dataFromClient)
+                    End If
+                    txtOut.Invoke(Sub()
+                                      txtOut.Text = currentConvo.getMessages()
+                                      txtOut.SelectionStart = txtOut.TextLength
                                       txtOut.ScrollToCaret()
                                   End Sub)
-                    messageReceived = True
+                End If
+                messageReceived = True
                     networkStream.Flush()
-                    'Catch ex As Exception
-                'End
-                'End Try
             End While
             clientSocket.Close()
             serversocket.Stop()
@@ -105,12 +107,14 @@ Public Class Form1
             If Not (txtOut.Text = vbNullString) Then
                 txtOut.Text += vbNewLine + vbNewLine
             End If
-            txtOut.Text += "Me"
-            txtOut.Text += vbNewLine
-            txtOut.Text += data
-            currentConvo.setmessages(txtOut.Text)
-            txtOut.SelectionStart = txtOut.TextLength
-            txtOut.ScrollToCaret()
+            If Not (data.ToCharArray.GetValue(0) = "|") Then
+                txtOut.Text += "Me"
+                txtOut.Text += vbNewLine
+                txtOut.Text += data
+                currentConvo.setmessages(txtOut.Text)
+                txtOut.SelectionStart = txtOut.TextLength
+                txtOut.ScrollToCaret()
+            End If
             txtMsg.Clear()
             data = encrypt(data)
             Console.WriteLine("Sending message """ & data & """ to " & getConvoByName(name).getIP)
@@ -172,11 +176,6 @@ Public Class Form1
 
     Private Sub btnMenu_Click(sender As Object, e As EventArgs) Handles btnMenu.Click
         appMenu.Show()
-    End Sub
-
-    Private Sub btnEmote_Click(sender As Object, e As EventArgs) Handles btnEmote.Click
-        tempemote = New emote(i)
-        i += 1
     End Sub
 
     Function encrypt(str As String) As String
@@ -241,4 +240,8 @@ Public Class Form1
         Next
         Return decrypted
     End Function
+
+    Private Sub cmbEmote_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbEmote.SelectedIndexChanged
+        txtMsg.Text = "|" + sender.items(cmbEmote.SelectedIndex).substring(0, 1)
+    End Sub
 End Class

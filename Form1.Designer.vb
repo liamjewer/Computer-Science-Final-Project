@@ -29,7 +29,8 @@ Partial Class Form1
         Me.cmbConvos = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.btnMenu = New System.Windows.Forms.Button()
-        Me.btnEmote = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.cmbEmote = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'txtOut
@@ -87,21 +88,31 @@ Partial Class Form1
         Me.btnMenu.Text = "Menu"
         Me.btnMenu.UseVisualStyleBackColor = True
         '
-        'btnEmote
+        'Label1
         '
-        Me.btnEmote.Location = New System.Drawing.Point(260, 185)
-        Me.btnEmote.Name = "btnEmote"
-        Me.btnEmote.Size = New System.Drawing.Size(75, 23)
-        Me.btnEmote.TabIndex = 16
-        Me.btnEmote.Text = "Emote"
-        Me.btnEmote.UseVisualStyleBackColor = True
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(265, 190)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(45, 13)
+        Me.Label1.TabIndex = 16
+        Me.Label1.Text = "Emotes:"
+        '
+        'cmbEmote
+        '
+        Me.cmbEmote.FormattingEnabled = True
+        Me.cmbEmote.Items.AddRange(New Object() {"0 - Thumbs Up", "1 - Thumbs Down"})
+        Me.cmbEmote.Location = New System.Drawing.Point(310, 187)
+        Me.cmbEmote.Name = "cmbEmote"
+        Me.cmbEmote.Size = New System.Drawing.Size(121, 21)
+        Me.cmbEmote.TabIndex = 17
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(566, 220)
-        Me.Controls.Add(Me.btnEmote)
+        Me.Controls.Add(Me.cmbEmote)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnMenu)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.cmbConvos)
@@ -121,5 +132,6 @@ Partial Class Form1
     Friend WithEvents cmbConvos As ComboBox
     Friend WithEvents Label4 As Label
     Friend WithEvents btnMenu As Button
-    Friend WithEvents btnEmote As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents cmbEmote As ComboBox
 End Class
