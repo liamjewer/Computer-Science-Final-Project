@@ -20,6 +20,7 @@ Public Class Form1
         running = True
 
         newConvo(strIPAddress, 15000, "This computer")
+        cmbConvos.SelectedIndex = 0
 
         'run listener on separate thread
         Dim listenTrd As Thread
@@ -34,60 +35,66 @@ Public Class Form1
 
     Sub StartServer()
         Dim serversocket
-        Try
-            serversocket = New TcpListener(currentConvo.getPort)
-        Catch
-            serversocket = New TcpListener(15000)
-        End Try
+        serversocket = New TcpListener(currentConvo.getPort)
         Dim clientSocket As TcpClient
         Dim messageReceived As Boolean = False
         Dim clientip As String
         Dim found As Boolean = False
         While running
             messageReceived = False
-            serverSocket.Start()
+            serversocket.Start()
             Console.WriteLine("Server Started")
-            clientSocket = serverSocket.AcceptTcpClient()
+            clientSocket = serversocket.AcceptTcpClient()
             clientip = DirectCast(clientSocket.Client.RemoteEndPoint, IPEndPoint).Address.ToString
             Console.WriteLine("received from: " + clientip)
             Console.WriteLine("Accept connection from client")
 
             While (Not (messageReceived))
-                Try
-                    Dim networkStream As NetworkStream = clientSocket.GetStream()
-                    Dim bytesFrom(10024) As Byte
-                    networkStream.Read(bytesFrom, 0, bytesFrom.Length)
-                    Dim dataFromClient As String = System.Text.Encoding.ASCII.GetString(bytesFrom)
-                    dataFromClient = dataFromClient.Substring(0, dataFromClient.Length)
-                    dataFromClient = decrypt(dataFromClient)
-                    For Each c As Conversation In conversations
-                        If clientip = c.getIP() Then
-                            found = True
-                            If Not (c.messages = vbNullString) Then
-                                c.messages += vbNewLine + vbNewLine
-                            End If
-                            c.messages += currentConvo.getName
-                            c.messages += vbNewLine
-                            c.messages += dataFromClient
+                'Try
+                Dim networkStream As NetworkStream = clientSocket.GetStream()
+                Dim bytesFrom(10024) As Byte
+                networkStream.Read(bytesFrom, 0, bytesFrom.Length)
+                Dim dataFromClient As String = System.Text.Encoding.ASCII.GetString(bytesFrom)
+                dataFromClient = dataFromClient.Substring(0, dataFromClient.Length)
+                dataFromClient = decrypt(dataFromClient)
+                For Each c As Conversation In conversations
+                    If clientip = c.getIP() Then
+                        found = True
+                        If Not (c.messages = vbNullString) Then
+                            c.messages += vbNewLine + vbNewLine
                         End If
-                    Next
-                    If found = False Then
-                        newConvo(clientip, 15000, clientip)
+                        c.messages += c.getName
+                        c.messages += vbNewLine
+                        c.messages += dataFromClient
+                        If Not (currentConvo.getIP = c.getIP) Then
+                            MsgBox("new message from:" + vbNewLine + c.getName + vbNewLine + dataFromClient)
+                        End If
                     End If
-                    'invoke into other thread
+                Next
+                If found = False Then
                     txtOut.Invoke(Sub()
-                                      txtOut.Text = currentConvo.getMessages()
-                                      txtOut.SelectionStart = txtOut.TextLength
+                                      newConvo(clientip, 15000, clientip)
+                                      tempConvo = getConvoByName(clientip)
+                                      tempConvo.messages += tempConvo.getName
+                                      tempConvo.messages += vbNewLine
+                                      tempConvo.messages += dataFromClient
+                                  End Sub)
+                    MsgBox("new message from:" + vbNewLine + clientip + vbNewLine + dataFromClient)
+                End If
+                'invoke into other thread
+                txtOut.Invoke(Sub()
+                                  txtOut.Text = currentConvo.getMessages()
+                                  txtOut.SelectionStart = txtOut.TextLength
                                       txtOut.ScrollToCaret()
                                   End Sub)
                     messageReceived = True
                     networkStream.Flush()
-                Catch ex As Exception
-                    End
-                End Try
+                    'Catch ex As Exception
+                'End
+                'End Try
             End While
             clientSocket.Close()
-            serverSocket.Stop()
+            serversocket.Stop()
             Console.WriteLine("exit")
             Console.ReadLine()
         End While
@@ -141,6 +148,8 @@ Public Class Form1
         currentConvo = convo
         Me.Text = convo.getName
         txtOut.Text = convo.getMessages
+        txtOut.SelectionStart = txtOut.TextLength
+        txtOut.ScrollToCaret()
     End Sub
 
     Private Sub cmbConvos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbConvos.SelectedIndexChanged
