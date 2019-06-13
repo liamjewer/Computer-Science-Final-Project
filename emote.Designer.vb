@@ -45,6 +45,10 @@ Partial Class emote
         Me.Emotes.TransparentColor = System.Drawing.Color.Transparent
         Me.Emotes.Images.SetKeyName(0, "thumbs up.jpg")
         Me.Emotes.Images.SetKeyName(1, "thumbs down.jpg")
+        Me.Emotes.Images.SetKeyName(2, "Crying Laughing.jpg")
+        Me.Emotes.Images.SetKeyName(3, "Kappa.png")
+        Me.Emotes.Images.SetKeyName(4, "lul.jpg")
+        Me.Emotes.Images.SetKeyName(5, "Icon.ico")
         '
         'emote
         '

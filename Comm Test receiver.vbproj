@@ -133,6 +133,12 @@
     <Compile Include="popupNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Xs and Os.Designer.vb">
+      <DependentUpon>Xs and Os.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Xs and Os.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="emote.resx">
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="popupNew.resx">
       <DependentUpon>popupNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xs and Os.resx">
+      <DependentUpon>Xs and Os.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

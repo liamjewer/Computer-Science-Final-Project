@@ -64,3 +64,4 @@ L:\coding\VB\Comp sci final\Computer-Science-Final-Project\obj\Debug\Comm_Test_r
 L:\coding\VB\Comp sci final\Computer-Science-Final-Project\obj\Debug\Comm_Test_receiver.popupNew.resources
 L:\coding\VB\Comp sci final\Computer-Science-Final-Project\obj\Debug\Comm_Test_receiver.emote.resources
 D:\coding\VB (ewwwwww)\Computer-Science-Final-Project\obj\Debug\Comm_Test_receiver.emote.resources
+D:\coding\VB (ewwwwww)\Computer-Science-Final-Project\obj\Debug\Comm_Test_receiver.Xs_and_Os.resources

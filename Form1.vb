@@ -242,6 +242,6 @@ Public Class Form1
     End Function
 
     Private Sub cmbEmote_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbEmote.SelectedIndexChanged
-        txtMsg.Text = "|" + sender.items(cmbEmote.SelectedIndex).substring(0, 1)
+        WriteData("|" + sender.items(cmbEmote.SelectedIndex).substring(0, 1), currentConvo.getName)
     End Sub
 End Class

@@ -100,7 +100,7 @@ Partial Class Form1
         'cmbEmote
         '
         Me.cmbEmote.FormattingEnabled = True
-        Me.cmbEmote.Items.AddRange(New Object() {"0 - Thumbs Up", "1 - Thumbs Down"})
+        Me.cmbEmote.Items.AddRange(New Object() {"0 - Thumbs Up", "1 - Thumbs Down", "2 - Crying Laughing", "3 - Kappa", "4 - LUL", "5 - Blac Box"})
         Me.cmbEmote.Location = New System.Drawing.Point(310, 187)
         Me.cmbEmote.Name = "cmbEmote"
         Me.cmbEmote.Size = New System.Drawing.Size(121, 21)
