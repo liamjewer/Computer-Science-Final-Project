@@ -92,15 +92,15 @@ Public Class Form1
                                       tempemote = New emote(dataFromClient.Remove(0, 1))
                                   End Sub)
                 ElseIf dataFromClient.Substring(0, 6) = ">XsOs:" Then
-                    Try
-                        getGameByConvo(clientconvo).winCheck(dataFromClient.ToCharArray.GetValue(6) + dataFromClient.ToCharArray.GetValue(7))
-                    Catch
-                        txtOut.Invoke(Sub()
+                    txtOut.Invoke(Sub()
+                                      Try
+                                          getGameByIP(clientip).winCheck(dataFromClient.ToCharArray.GetValue(6) + dataFromClient.ToCharArray.GetValue(7)) 'this keeps giving error, upon response new game is created... fix this
+                                      Catch
                                           tempGame = New Xs_and_Os(clientconvo, False)
-                                          Games.Add(tempGame)
-                                          tempGame.winCheck(dataFromClient.ToCharArray.GetValue(6) + dataFromClient.ToCharArray.GetValue(7))
-                                      End Sub)
-                    End Try
+                                                            Games.Add(tempGame)
+                                                            tempGame.winCheck(dataFromClient.ToCharArray.GetValue(6) + dataFromClient.ToCharArray.GetValue(7))
+                                      End Try
+                                  End Sub)
                 Else
                     txtOut.Invoke(Sub()
                                       txtOut.Text = currentConvo.getMessages()
@@ -188,9 +188,9 @@ Public Class Form1
         Next
     End Function
 
-    Public Function getGameByConvo(convo As Conversation) As Xs_and_Os
+    Public Function getGameByIP(IP As String) As Xs_and_Os
         For Each game As Xs_and_Os In Games
-            If game.getOpp.getName = convo.getName Then
+            If game.getOpp.getIP = IP Then
                 Return game
                 Exit For
             Else
