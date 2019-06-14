@@ -8,10 +8,12 @@ Public Class Form1
     Dim strIPAddress As String
     Dim running As Boolean = False
     Public conversations As List(Of Conversation) = New List(Of Conversation)
+    Public Games As List(Of Xs_and_Os) = New List(Of Xs_and_Os)
     Dim currentConvo As Conversation
     Dim tempConvo As Conversation
     Dim i As Integer = 0
     Dim tempemote As emote
+    Dim tempGame As Xs_and_Os
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         strHostName = Dns.GetHostName()
@@ -55,11 +57,13 @@ Public Class Form1
                 Dim bytesFrom(10024) As Byte
                 networkStream.Read(bytesFrom, 0, bytesFrom.Length)
                 Dim dataFromClient As String = System.Text.Encoding.ASCII.GetString(bytesFrom)
+                Dim clientconvo As Conversation
                 dataFromClient = dataFromClient.Substring(0, dataFromClient.Length)
                 dataFromClient = decrypt(dataFromClient)
                 For Each c As Conversation In conversations
                     If clientip = c.getIP() Then
                         found = True
+                        clientconvo = c
                         If Not (c.messages = vbNullString) Then
                             c.messages += vbNewLine + vbNewLine
                         End If
@@ -71,29 +75,41 @@ Public Class Form1
                         End If
                     End If
                 Next
-                If dataFromClient.ToCharArray.GetValue(0) = "|" Then
+                If found = False Then
+                    txtOut.Invoke(Sub()
+                                      newConvo(clientip, 15000, clientip)
+                                      tempConvo = getConvoByName(clientip)
+                                      tempConvo.messages += tempConvo.getName
+                                      tempConvo.messages += vbNewLine
+                                      tempConvo.messages += dataFromClient
+                                  End Sub)
+                    clientconvo = getConvoByName(clientip)
+                    MsgBox("new message from:" + vbNewLine + clientip + vbNewLine + dataFromClient)
+                End If
+                If dataFromClient.ToCharArray.GetValue(0) = "|" Then 'check if message is special
                     txtOut.Invoke(Sub()
                                       tempemote = New emote(dataFromClient.Remove(0, 1))
                                   End Sub)
-                Else
-                    If found = False Then
-                        txtOut.Invoke(Sub()
-                                          newConvo(clientip, 15000, clientip)
-                                          tempConvo = getConvoByName(clientip)
-                                          tempConvo.messages += tempConvo.getName
-                                          tempConvo.messages += vbNewLine
-                                          tempConvo.messages += dataFromClient
-                                      End Sub)
-                        MsgBox("new message from:" + vbNewLine + clientip + vbNewLine + dataFromClient)
+                ElseIf dataFromClient.Substring(0, 6) = ">XsOs:" Then
+                    MsgBox("game received")
+                    If Not (getGameByConvo(clientconvo).getOpp.getName = "") Then
+                        getGameByConvo(clientconvo).winCheck(dataFromClient.Substring(7, 8))
+                    Else
+                        MsgBox("new game")
+                        tempGame = New Xs_and_Os(clientconvo, False)
+                        Games.Add(tempGame)
+                        tempGame.winCheck(dataFromClient.Substring(7, 8))
                     End If
+                Else
                     txtOut.Invoke(Sub()
                                       txtOut.Text = currentConvo.getMessages()
                                       txtOut.SelectionStart = txtOut.TextLength
                                       txtOut.ScrollToCaret()
                                   End Sub)
                 End If
+
                 messageReceived = True
-                    networkStream.Flush()
+                networkStream.Flush()
             End While
             clientSocket.Close()
             serversocket.Stop()
@@ -107,7 +123,7 @@ Public Class Form1
             If Not (txtOut.Text = vbNullString) Then
                 txtOut.Text += vbNewLine + vbNewLine
             End If
-            If Not (data.ToCharArray.GetValue(0) = "|") Then
+            If Not (data.ToCharArray.GetValue(0) = "|" OrElse data.ToCharArray.GetValue(0) = ">") Then
                 txtOut.Text += "Me"
                 txtOut.Text += vbNewLine
                 txtOut.Text += data
@@ -137,7 +153,7 @@ Public Class Form1
     Private Sub txtMsg_KeyDown(sender As Object, e As KeyEventArgs) Handles txtMsg.KeyDown
         If e.KeyCode = Keys.Enter Then
             If Not (txtMsg.Text = vbNullString) AndAlso Not (currentConvo.getIP = vbNullString) Then
-                WriteData(txtMsg.Text, currentConvo.getIP)
+                WriteData(txtMsg.Text, currentConvo.getName)
             End If
         End If
     End Sub
@@ -161,15 +177,23 @@ Public Class Form1
     End Sub
 
     Public Function getConvoByName(name As String) As Conversation
-        For Each c As Conversation In conversations
-            Console.WriteLine(c.getName)
-        Next
         For Each convo As Conversation In conversations
             If convo.getName = name Then
                 Return convo
                 Exit For
             Else
                 Console.WriteLine("name not found: " + name)
+            End If
+        Next
+    End Function
+
+    Public Function getGameByConvo(convo As Conversation) As Xs_and_Os
+        For Each game As Xs_and_Os In Games
+            If game.getOpp.getName = convo.getName Then
+                Return game
+                Exit For
+            Else
+                Console.WriteLine("game not found: " + Name)
             End If
         Next
     End Function

@@ -32,6 +32,7 @@ Partial Class Xs_and_Os
         Me.btnTopMid = New System.Windows.Forms.Button()
         Me.btnTopLeft = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.lblOpp = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -134,12 +135,22 @@ Partial Class Xs_and_Os
         Me.PictureBox1.TabIndex = 28
         Me.PictureBox1.TabStop = False
         '
+        'lblOpp
+        '
+        Me.lblOpp.AutoSize = True
+        Me.lblOpp.Location = New System.Drawing.Point(13, 13)
+        Me.lblOpp.Name = "lblOpp"
+        Me.lblOpp.Size = New System.Drawing.Size(39, 13)
+        Me.lblOpp.TabIndex = 29
+        Me.lblOpp.Text = "Label1"
+        '
         'Xs_and_Os
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ClientSize = New System.Drawing.Size(583, 537)
+        Me.Controls.Add(Me.lblOpp)
         Me.Controls.Add(Me.btnBottomRight)
         Me.Controls.Add(Me.btnBottomMid)
         Me.Controls.Add(Me.btnBottomLeft)
@@ -154,6 +165,7 @@ Partial Class Xs_and_Os
         Me.Text = "Xs_and_Os"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -167,4 +179,5 @@ Partial Class Xs_and_Os
     Friend WithEvents btnTopMid As Button
     Friend WithEvents btnTopLeft As Button
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents lblOpp As Label
 End Class
