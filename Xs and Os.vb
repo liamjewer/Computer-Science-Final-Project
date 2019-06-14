@@ -1,6 +1,6 @@
 ﻿Public Class Xs_and_Os
     Dim box As Object
-    Dim turn As Boolean = True 'if its this pcs turn
+    Public turn As Boolean = True 'if its this pcs turn
     Dim IAmX As Boolean
     Dim opp As Conversation
 

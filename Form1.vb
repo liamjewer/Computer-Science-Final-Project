@@ -94,11 +94,13 @@ Public Class Form1
                     MsgBox("game received")
                     If Not (getGameByConvo(clientconvo).getOpp.getName = "") Then
                         getGameByConvo(clientconvo).winCheck(dataFromClient.Substring(7, 8))
+                        getGameByConvo(clientconvo).turn = True
                     Else
                         MsgBox("new game")
                         tempGame = New Xs_and_Os(clientconvo, False)
                         Games.Add(tempGame)
                         tempGame.winCheck(dataFromClient.Substring(7, 8))
+                        tempGame.turn = True
                     End If
                 Else
                     txtOut.Invoke(Sub()
