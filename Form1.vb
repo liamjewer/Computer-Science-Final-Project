@@ -86,22 +86,21 @@ Public Class Form1
                     clientconvo = getConvoByName(clientip)
                     MsgBox("new message from:" + vbNewLine + clientip + vbNewLine + dataFromClient)
                 End If
+
                 If dataFromClient.ToCharArray.GetValue(0) = "|" Then 'check if message is special
                     txtOut.Invoke(Sub()
                                       tempemote = New emote(dataFromClient.Remove(0, 1))
                                   End Sub)
                 ElseIf dataFromClient.Substring(0, 6) = ">XsOs:" Then
-                    MsgBox("game received")
-                    If Not (getGameByConvo(clientconvo).getOpp.getName = "") Then
-                        getGameByConvo(clientconvo).winCheck(dataFromClient.Substring(7, 8))
-                        getGameByConvo(clientconvo).turn = True
-                    Else
-                        MsgBox("new game")
-                        tempGame = New Xs_and_Os(clientconvo, False)
-                        Games.Add(tempGame)
-                        tempGame.winCheck(dataFromClient.Substring(7, 8))
-                        tempGame.turn = True
-                    End If
+                    Try
+                        getGameByConvo(clientconvo).winCheck(dataFromClient.ToCharArray.GetValue(6) + dataFromClient.ToCharArray.GetValue(7))
+                    Catch
+                        txtOut.Invoke(Sub()
+                                          tempGame = New Xs_and_Os(clientconvo, False)
+                                          Games.Add(tempGame)
+                                          tempGame.winCheck(dataFromClient.ToCharArray.GetValue(6) + dataFromClient.ToCharArray.GetValue(7))
+                                      End Sub)
+                    End Try
                 Else
                     txtOut.Invoke(Sub()
                                       txtOut.Text = currentConvo.getMessages()
