@@ -53,9 +53,10 @@
             box.Text = "o"
             Form1.WriteData(">XsOs:" + spot, opp.getName) 'send turn to opp
         End If
+        winCheck()
     End Sub
 
-    Public Sub winCheck(spot As String)
+    Sub receive(spot As String)
         If spot = "TL" Then
             box = btnTopLeft
         ElseIf spot = "TM" Then
@@ -83,7 +84,10 @@
             turn = True
             box.Text = "o"
         End If
+        winCheck()
+    End Sub
 
+    Public Sub winCheck()
         If (btnTopLeft.Text = "x" And btnMidLeft.Text = "x" And btnBottomLeft.Text = "x") Then
             msgx()
         ElseIf (btnTopLeft.Text = "x" And btnTopMid.Text = "x" And btntopRight.Text = "x") Then

@@ -94,11 +94,11 @@ Public Class Form1
                 ElseIf dataFromClient.Substring(0, 6) = ">XsOs:" Then
                     txtOut.Invoke(Sub()
                                       Try
-                                          getGameByIP(clientip).winCheck(dataFromClient.ToCharArray.GetValue(6) + dataFromClient.ToCharArray.GetValue(7))
+                                          getGameByIP(clientip).receive(dataFromClient.ToCharArray.GetValue(6) + dataFromClient.ToCharArray.GetValue(7))
                                       Catch
                                           tempGame = New Xs_and_Os(clientconvo, False)
-                                                            Games.Add(tempGame)
-                                                            tempGame.winCheck(dataFromClient.ToCharArray.GetValue(6) + dataFromClient.ToCharArray.GetValue(7))
+                                          Games.Add(tempGame)
+                                          tempGame.receive(dataFromClient.ToCharArray.GetValue(6) + dataFromClient.ToCharArray.GetValue(7))
                                       End Try
                                   End Sub)
                 Else
