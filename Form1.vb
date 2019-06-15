@@ -94,7 +94,7 @@ Public Class Form1
                 ElseIf dataFromClient.Substring(0, 6) = ">XsOs:" Then
                     txtOut.Invoke(Sub()
                                       Try
-                                          getGameByIP(clientip).winCheck(dataFromClient.ToCharArray.GetValue(6) + dataFromClient.ToCharArray.GetValue(7)) 'this keeps giving error, upon response new game is created... fix this
+                                          getGameByIP(clientip).winCheck(dataFromClient.ToCharArray.GetValue(6) + dataFromClient.ToCharArray.GetValue(7))
                                       Catch
                                           tempGame = New Xs_and_Os(clientconvo, False)
                                                             Games.Add(tempGame)

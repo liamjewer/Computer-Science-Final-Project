@@ -23,7 +23,7 @@
         End If
     End Function
 
-    Sub send(spot As String)
+    Sub send(spot As String) 'on close delete the game from form1.games
         If spot = "TL" Then
             box = btnTopLeft
         ElseIf spot = "TM" Then
@@ -47,7 +47,7 @@
         If (turn And spotfree(box) And IAmX = True) Then
             turn = False
             box.Text = "x"
-            Form1.WriteData(">XsOs:" + spot, opp.getName) 'send turn to opponant
+            Form1.WriteData(">XsOs:" + spot, opp.getName) 'send turn to opp
         ElseIf (turn And spotfree(box) And IAmX = False) Then
             turn = False
             box.Text = "o"
@@ -56,7 +56,6 @@
     End Sub
 
     Public Sub winCheck(spot As String)
-        MsgBox(spot)
         If spot = "TL" Then
             box = btnTopLeft
         ElseIf spot = "TM" Then
@@ -156,7 +155,6 @@
 
     Private Sub btnTopLeft_Click(sender As Object, e As EventArgs) Handles btnTopLeft.Click
         send("TL")
-        turn = False
     End Sub
 
     Private Sub btnTopMid_Click(sender As Object, e As EventArgs) Handles btnTopMid.Click
@@ -195,7 +193,7 @@
         Return opp
     End Function
 
-    Private Sub Xs_and_Os_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        lblOpp.Text = opp.getName
+    Private Sub Xs_and_Os_Close(sender As Object, e As EventArgs) Handles MyBase.Closed
+        Form1.Games.Remove(Me)
     End Sub
 End Class
