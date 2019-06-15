@@ -196,4 +196,8 @@
     Private Sub Xs_and_Os_Close(sender As Object, e As EventArgs) Handles MyBase.Closed
         Form1.Games.Remove(Me)
     End Sub
+
+    Private Sub Xs_and_Os_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        lblOpp.Text = opp.getName
+    End Sub
 End Class

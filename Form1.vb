@@ -136,7 +136,7 @@ Public Class Form1
             data = encrypt(data)
             Console.WriteLine("Sending message """ & data & """ to " & getConvoByName(name).getIP)
             Dim client As TcpClient = New TcpClient()
-            client.Connect(New IPEndPoint(IPAddress.Parse(currentConvo.getIP), currentConvo.getPort))
+            client.Connect(New IPEndPoint(IPAddress.Parse(getConvoByName(name).getIP), getConvoByName(name).getPort))
             Dim stream As NetworkStream = client.GetStream()
             Dim sendBytes As Byte() = Encoding.ASCII.GetBytes(data)
             stream.Write(sendBytes, 0, sendBytes.Length)
