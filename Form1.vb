@@ -285,7 +285,7 @@ Public Class Form1
         file = My.Computer.FileSystem.OpenTextFileWriter(path, True)
         For Each convo As Conversation In convos
             If Not (convo.getName = "This computer") Then
-                file.WriteLine(convo.getIP + "," + convo.getPort.ToString + "," + convo.getName)
+                file.WriteLine(encrypt(convo.getIP) + "," + encrypt(convo.getPort.ToString) + "," + encrypt(convo.getName))
             End If
         Next
         file.Close()
@@ -300,7 +300,7 @@ Public Class Form1
                     Input(1, tempPort)
                     Input(1, tempName)
 
-                    tempConvo = New Conversation(tempIP, tempPort, tempName)
+                    tempConvo = New Conversation(decrypt(tempIP), decrypt(tempPort), decrypt(tempName))
                     conversations.Add(tempConvo)
                     cmbConvos.Items.Add(tempConvo.getName)
                 Loop
