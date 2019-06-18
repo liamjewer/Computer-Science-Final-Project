@@ -14,6 +14,11 @@ Public Class Form1
     Dim i As Integer = 0
     Dim tempemote As emote
     Dim tempGame As Xs_and_Os
+    Dim file As System.IO.StreamWriter
+    Dim tempIP As String
+    Dim tempPort As Integer
+    Dim tempName As String
+    Const path As String = "convos.txt" 'path to txt file
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         strHostName = Dns.GetHostName()
@@ -21,7 +26,9 @@ Public Class Form1
         Me.Text = strIPAddress
         running = True
 
+        loadConvos()
         newConvo(strIPAddress, 15000, "This computer")
+        loadConvoMsgs()
         cmbConvos.SelectedIndex = 0
 
         'run listener on separate thread
@@ -32,6 +39,8 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_FormClosing(sender As Object, e As EventArgs) Handles MyBase.FormClosing
+        saveConvos(conversations.ToArray)
+        saveMsgs()
         running = False
     End Sub
 
@@ -268,5 +277,52 @@ Public Class Form1
 
     Private Sub cmbEmote_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbEmote.SelectedIndexChanged
         WriteData("|" + sender.items(cmbEmote.SelectedIndex).substring(0, 1), currentConvo.getName)
+    End Sub
+
+    Private Sub saveConvos(convos() As Conversation)
+        System.IO.File.WriteAllText(path, "") 'clear file
+        Dim file As System.IO.StreamWriter
+        file = My.Computer.FileSystem.OpenTextFileWriter(path, True)
+        For Each convo As Conversation In convos
+            If Not (convo.getName = "This computer") Then
+                file.WriteLine(convo.getIP + "," + convo.getPort.ToString + "," + convo.getName)
+            End If
+        Next
+        file.Close()
+    End Sub
+
+    Private Sub loadConvos()
+        Try
+            If Not (System.IO.File.ReadAllText(path) = "") Then
+                FileOpen(1, path, OpenMode.Input) 'open file for reading
+                Do Until EOF(1)
+                    Input(1, tempIP)
+                    Input(1, tempPort)
+                    Input(1, tempName)
+
+                    tempConvo = New Conversation(tempIP, tempPort, tempName)
+                    conversations.Add(tempConvo)
+                    cmbConvos.Items.Add(tempConvo.getName)
+                Loop
+            End If
+            FileClose(1)
+        Catch ex As Exception
+            'MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub saveMsgs()
+        For Each convo As Conversation In conversations
+            System.IO.File.Create(convo.getName + ".txt").Dispose()
+            System.IO.File.WriteAllText(convo.getName + ".txt", convo.getMessages)
+        Next
+    End Sub
+
+    Private Sub loadConvoMsgs()
+        For Each convo As Conversation In conversations
+            If My.Computer.FileSystem.FileExists(convo.getName + ".txt") Then
+                convo.setmessages(System.IO.File.ReadAllText(convo.getName + ".txt"))
+            End If
+        Next
     End Sub
 End Class
