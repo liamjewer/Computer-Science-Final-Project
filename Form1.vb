@@ -84,7 +84,7 @@ Public Class Form1
                         End If
                     End If
                 Next
-                If found = False AndAlso Not (dataFromClient.ToCharArray.GetValue(0) = "|" OrElse dataFromClient.ToCharArray.GetValue(0) = ">") Then
+                If found = False AndAlso Not (dataFromClient.ToCharArray.GetValue(0) = "|" OrElse dataFromClient.ToCharArray.GetValue(0) = ">") Then 'if message is not special, show it in the chatbox
                     txtOut.Invoke(Sub()
                                       newConvo(clientip, 15000, clientip)
                                       tempConvo = getConvoByName(clientip)
@@ -313,15 +313,17 @@ Public Class Form1
 
     Private Sub saveMsgs()
         For Each convo As Conversation In conversations
-            System.IO.File.Create(convo.getName + ".txt").Dispose()
-            System.IO.File.WriteAllText(convo.getName + ".txt", convo.getMessages)
+            If Not (convo.getMessages = "") Then
+                System.IO.File.Create(convo.getName + ".txt").Dispose()
+                System.IO.File.WriteAllText(convo.getName + ".txt", encrypt(convo.getMessages))
+            End If
         Next
     End Sub
 
     Private Sub loadConvoMsgs()
         For Each convo As Conversation In conversations
             If My.Computer.FileSystem.FileExists(convo.getName + ".txt") Then
-                convo.setmessages(System.IO.File.ReadAllText(convo.getName + ".txt"))
+                convo.setmessages(decrypt(System.IO.File.ReadAllText(convo.getName + ".txt")))
             End If
         Next
     End Sub
