@@ -314,16 +314,16 @@ Public Class Form1
     Private Sub saveMsgs()
         For Each convo As Conversation In conversations
             If Not (convo.getMessages = "") Then
-                System.IO.File.Create(convo.getName + ".txt").Dispose()
-                System.IO.File.WriteAllText(convo.getName + ".txt", encrypt(convo.getMessages))
+                System.IO.File.Create(encrypt(convo.getName) + ".txt").Dispose()
+                System.IO.File.WriteAllText(encrypt(convo.getName) + ".txt", encrypt(convo.getMessages))
             End If
         Next
     End Sub
 
     Private Sub loadConvoMsgs()
         For Each convo As Conversation In conversations
-            If My.Computer.FileSystem.FileExists(convo.getName + ".txt") Then
-                convo.setmessages(decrypt(System.IO.File.ReadAllText(convo.getName + ".txt")))
+            If My.Computer.FileSystem.FileExists(encrypt(convo.getName) + ".txt") Then
+                convo.setmessages(decrypt(System.IO.File.ReadAllText(encrypt(convo.getName) + ".txt")))
             End If
         Next
     End Sub
