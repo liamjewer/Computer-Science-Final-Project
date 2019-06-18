@@ -75,7 +75,7 @@ Public Class Form1
                         End If
                     End If
                 Next
-                If found = False Then
+                If found = False AndAlso Not (dataFromClient.ToCharArray.GetValue(0) = "|" OrElse dataFromClient.ToCharArray.GetValue(0) = ">") Then
                     txtOut.Invoke(Sub()
                                       newConvo(clientip, 15000, clientip)
                                       tempConvo = getConvoByName(clientip)
