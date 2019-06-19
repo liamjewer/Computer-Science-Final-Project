@@ -204,4 +204,8 @@
     Private Sub Xs_and_Os_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblOpp.Text = opp.getName
     End Sub
+
+    Private Sub timer_Tick(sender As Object, e As EventArgs) Handles timer.Tick
+        BackColor = Form1.BackColor
+    End Sub
 End Class

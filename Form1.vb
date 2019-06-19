@@ -19,6 +19,9 @@ Public Class Form1
     Dim tempPort As Integer
     Dim tempName As String
     Const path As String = "convos.txt" 'path to txt file
+    Dim lines() As String 'lines in settings.txt
+    Public rgb(3) As String 'rgb values from settings.txt
+    Public darkMode As Boolean
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         strHostName = Dns.GetHostName()
@@ -30,6 +33,7 @@ Public Class Form1
         newConvo(strIPAddress, 15000, "This computer")
         loadConvoMsgs()
         cmbConvos.SelectedIndex = 0
+        loadsettings()
 
         'run listener on separate thread
         Dim listenTrd As Thread
@@ -39,6 +43,7 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_FormClosing(sender As Object, e As EventArgs) Handles MyBase.FormClosing
+        savesettings()
         saveConvos(conversations.ToArray)
         saveMsgs()
         running = False
@@ -309,6 +314,32 @@ Public Class Form1
         Catch ex As Exception
             'MsgBox(ex.ToString)
         End Try
+    End Sub
+
+    Private Sub savesettings()
+        System.IO.File.WriteAllText("settings.txt", "") 'clear file
+        Dim file As System.IO.StreamWriter
+        file = My.Computer.FileSystem.OpenTextFileWriter("settings.txt", True)
+        file.WriteLine(darkMode)
+        file.WriteLine(rgb(0))
+        file.WriteLine(rgb(1))
+        file.WriteLine(rgb(2))
+        file.Close()
+        MsgBox(System.IO.File.ReadAllText("settings.txt"))
+    End Sub
+
+    Private Sub loadsettings()
+        lines = Split(System.IO.File.ReadAllText("settings.txt"), vbNewLine)
+        rgb(0) = lines(1)
+        rgb(1) = lines(2)
+        rgb(2) = lines(3)
+        appMenu.CBDT.Checked = lines(0)
+        MsgBox(lines(1))
+        appMenu.numR.Value = rgb(0)
+        MsgBox(lines(2))
+        appMenu.numG.Value = rgb(1)
+        MsgBox(lines(3))
+        appMenu.numB.Value = rgb(2)
     End Sub
 
     Private Sub saveMsgs()

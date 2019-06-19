@@ -29,6 +29,7 @@ Partial Class popupNew
         Me.txtPort = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtIP = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label3
@@ -58,12 +59,13 @@ Partial Class popupNew
         '
         'btnNew
         '
+        Me.btnNew.BackColor = System.Drawing.Color.White
         Me.btnNew.Location = New System.Drawing.Point(12, 87)
         Me.btnNew.Name = "btnNew"
         Me.btnNew.Size = New System.Drawing.Size(71, 23)
         Me.btnNew.TabIndex = 19
         Me.btnNew.Text = "new"
-        Me.btnNew.UseVisualStyleBackColor = True
+        Me.btnNew.UseVisualStyleBackColor = False
         '
         'txtPort
         '
@@ -89,11 +91,23 @@ Partial Class popupNew
         Me.txtIP.Size = New System.Drawing.Size(86, 20)
         Me.txtIP.TabIndex = 16
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.White
+        Me.Button1.Location = New System.Drawing.Point(89, 87)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(91, 23)
+        Me.Button1.TabIndex = 23
+        Me.Button1.Text = "Generate Name"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'popupNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(192, 119)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtName)
@@ -115,4 +129,5 @@ Partial Class popupNew
     Friend WithEvents txtPort As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents txtIP As TextBox
+    Friend WithEvents Button1 As Button
 End Class

@@ -55,12 +55,13 @@ Partial Class Form1
         '
         'btnSend
         '
+        Me.btnSend.BackColor = System.Drawing.Color.White
         Me.btnSend.Location = New System.Drawing.Point(501, 160)
         Me.btnSend.Name = "btnSend"
         Me.btnSend.Size = New System.Drawing.Size(53, 23)
         Me.btnSend.TabIndex = 5
         Me.btnSend.Text = "Send"
-        Me.btnSend.UseVisualStyleBackColor = True
+        Me.btnSend.UseVisualStyleBackColor = False
         '
         'cmbConvos
         '
@@ -81,12 +82,13 @@ Partial Class Form1
         '
         'btnMenu
         '
+        Me.btnMenu.BackColor = System.Drawing.Color.White
         Me.btnMenu.Location = New System.Drawing.Point(479, 191)
         Me.btnMenu.Name = "btnMenu"
         Me.btnMenu.Size = New System.Drawing.Size(75, 23)
         Me.btnMenu.TabIndex = 15
         Me.btnMenu.Text = "Menu"
-        Me.btnMenu.UseVisualStyleBackColor = True
+        Me.btnMenu.UseVisualStyleBackColor = False
         '
         'Label1
         '
@@ -110,6 +112,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(566, 220)
         Me.Controls.Add(Me.cmbEmote)
         Me.Controls.Add(Me.Label1)

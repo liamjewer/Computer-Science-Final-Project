@@ -22,6 +22,7 @@ Partial Class Xs_and_Os
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.btnBottomRight = New System.Windows.Forms.Button()
         Me.btnBottomMid = New System.Windows.Forms.Button()
         Me.btnBottomLeft = New System.Windows.Forms.Button()
@@ -33,6 +34,7 @@ Partial Class Xs_and_Os
         Me.btnTopLeft = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblOpp = New System.Windows.Forms.Label()
+        Me.timer = New System.Windows.Forms.Timer(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -144,6 +146,10 @@ Partial Class Xs_and_Os
         Me.lblOpp.TabIndex = 29
         Me.lblOpp.Text = "Label1"
         '
+        'timer
+        '
+        Me.timer.Interval = 10
+        '
         'Xs_and_Os
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -180,4 +186,5 @@ Partial Class Xs_and_Os
     Friend WithEvents btnTopLeft As Button
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lblOpp As Label
+    Friend WithEvents timer As Timer
 End Class
