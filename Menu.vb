@@ -84,4 +84,10 @@ Public Class appMenu
         game = New Xs_and_Os(convo, True)
         Form1.Games.Add(game)
     End Sub
+
+    Private Sub appMenu_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        Form1.rgb(0) = numR.Value
+        Form1.rgb(1) = numG.Value
+        Form1.rgb(2) = numB.Value
+    End Sub
 End Class

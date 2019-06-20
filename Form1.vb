@@ -2,6 +2,7 @@
 Imports System.Net.Sockets
 Imports System.Text
 Imports System.Threading
+Imports System.IO
 
 Public Class Form1
     Dim strHostName As String
@@ -29,6 +30,7 @@ Public Class Form1
         Me.Text = strIPAddress
         running = True
 
+        'load all .txt files
         loadConvos()
         newConvo(strIPAddress, 15000, "This computer")
         loadConvoMsgs()
@@ -317,15 +319,15 @@ Public Class Form1
     End Sub
 
     Private Sub savesettings()
+        Console.WriteLine("saving...")
         System.IO.File.WriteAllText("settings.txt", "") 'clear file
         Dim file As System.IO.StreamWriter
         file = My.Computer.FileSystem.OpenTextFileWriter("settings.txt", True)
-        file.WriteLine(darkMode)
+        file.WriteLine(darkMode.ToString)
         file.WriteLine(rgb(0))
         file.WriteLine(rgb(1))
         file.WriteLine(rgb(2))
         file.Close()
-        MsgBox(System.IO.File.ReadAllText("settings.txt"))
     End Sub
 
     Private Sub loadsettings()
@@ -334,11 +336,8 @@ Public Class Form1
         rgb(1) = lines(2)
         rgb(2) = lines(3)
         appMenu.CBDT.Checked = lines(0)
-        MsgBox(lines(1))
         appMenu.numR.Value = rgb(0)
-        MsgBox(lines(2))
         appMenu.numG.Value = rgb(1)
-        MsgBox(lines(3))
         appMenu.numB.Value = rgb(2)
     End Sub
 
