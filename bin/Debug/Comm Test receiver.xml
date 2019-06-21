@@ -22,5 +22,10 @@ Comm Test receiver
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="P:Comm_Test_receiver.My.Resources.Resources.Icon">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 </members>
 </doc>

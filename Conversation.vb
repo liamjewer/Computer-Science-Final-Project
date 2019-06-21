@@ -4,7 +4,7 @@
     Dim name As String
     Public messages As String
 
-    Public Sub New(IP As String, port As Integer, name As String)
+    Public Sub New(IP As String, port As Integer, name As String) 'new conversation object created
         Me.port = port
         Me.IP = IP
         Me.name = name

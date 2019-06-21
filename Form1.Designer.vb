@@ -36,56 +36,67 @@ Partial Class Form1
         'txtOut
         '
         Me.txtOut.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.txtOut.Font = New System.Drawing.Font("Monospac821 BT", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtOut.Location = New System.Drawing.Point(13, 12)
+        Me.txtOut.Font = New System.Drawing.Font("Unispace", 9.749999!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtOut.Location = New System.Drawing.Point(298, 10)
+        Me.txtOut.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.txtOut.Multiline = True
         Me.txtOut.Name = "txtOut"
         Me.txtOut.ReadOnly = True
         Me.txtOut.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtOut.Size = New System.Drawing.Size(541, 143)
+        Me.txtOut.Size = New System.Drawing.Size(924, 359)
         Me.txtOut.TabIndex = 1
         '
         'txtMsg
         '
         Me.txtMsg.AllowDrop = True
-        Me.txtMsg.Location = New System.Drawing.Point(13, 162)
+        Me.txtMsg.Font = New System.Drawing.Font("Unispace", 9.749999!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtMsg.Location = New System.Drawing.Point(298, 377)
+        Me.txtMsg.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.txtMsg.Name = "txtMsg"
-        Me.txtMsg.Size = New System.Drawing.Size(482, 20)
+        Me.txtMsg.Size = New System.Drawing.Size(787, 23)
         Me.txtMsg.TabIndex = 2
         '
         'btnSend
         '
         Me.btnSend.BackColor = System.Drawing.Color.White
-        Me.btnSend.Location = New System.Drawing.Point(501, 160)
+        Me.btnSend.Font = New System.Drawing.Font("Unispace", 9.749999!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSend.Location = New System.Drawing.Point(1093, 375)
+        Me.btnSend.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.btnSend.Name = "btnSend"
-        Me.btnSend.Size = New System.Drawing.Size(53, 23)
+        Me.btnSend.Size = New System.Drawing.Size(129, 25)
         Me.btnSend.TabIndex = 5
         Me.btnSend.Text = "Send"
         Me.btnSend.UseVisualStyleBackColor = False
         '
         'cmbConvos
         '
+        Me.cmbConvos.Font = New System.Drawing.Font("Unispace", 9.749999!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbConvos.FormattingEnabled = True
-        Me.cmbConvos.Location = New System.Drawing.Point(130, 188)
+        Me.cmbConvos.Location = New System.Drawing.Point(20, 46)
+        Me.cmbConvos.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.cmbConvos.Name = "cmbConvos"
-        Me.cmbConvos.Size = New System.Drawing.Size(124, 21)
+        Me.cmbConvos.Size = New System.Drawing.Size(247, 23)
         Me.cmbConvos.TabIndex = 9
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(12, 191)
+        Me.Label4.Font = New System.Drawing.Font("Unispace", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(16, 20)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(80, 13)
+        Me.Label4.Size = New System.Drawing.Size(190, 23)
         Me.Label4.TabIndex = 14
         Me.Label4.Text = "Select Contact:"
         '
         'btnMenu
         '
         Me.btnMenu.BackColor = System.Drawing.Color.White
-        Me.btnMenu.Location = New System.Drawing.Point(479, 191)
+        Me.btnMenu.Font = New System.Drawing.Font("Unispace", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnMenu.Location = New System.Drawing.Point(19, 325)
+        Me.btnMenu.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.btnMenu.Name = "btnMenu"
-        Me.btnMenu.Size = New System.Drawing.Size(75, 23)
+        Me.btnMenu.Size = New System.Drawing.Size(248, 75)
         Me.btnMenu.TabIndex = 15
         Me.btnMenu.Text = "Menu"
         Me.btnMenu.UseVisualStyleBackColor = False
@@ -93,27 +104,31 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(265, 190)
+        Me.Label1.Font = New System.Drawing.Font("Unispace", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(16, 89)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(45, 13)
+        Me.Label1.Size = New System.Drawing.Size(94, 23)
         Me.Label1.TabIndex = 16
         Me.Label1.Text = "Emotes:"
         '
         'cmbEmote
         '
+        Me.cmbEmote.Font = New System.Drawing.Font("Unispace", 9.749999!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbEmote.FormattingEnabled = True
         Me.cmbEmote.Items.AddRange(New Object() {"0 - Thumbs Up", "1 - Thumbs Down", "2 - Crying Laughing", "3 - Kappa", "4 - LUL", "5 - Blac Box"})
-        Me.cmbEmote.Location = New System.Drawing.Point(310, 187)
+        Me.cmbEmote.Location = New System.Drawing.Point(20, 115)
+        Me.cmbEmote.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.cmbEmote.Name = "cmbEmote"
-        Me.cmbEmote.Size = New System.Drawing.Size(121, 21)
+        Me.cmbEmote.Size = New System.Drawing.Size(247, 23)
         Me.cmbEmote.TabIndex = 17
         '
         'Form1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(566, 220)
+        Me.ClientSize = New System.Drawing.Size(1240, 415)
         Me.Controls.Add(Me.cmbEmote)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnMenu)
@@ -122,7 +137,9 @@ Partial Class Form1
         Me.Controls.Add(Me.btnSend)
         Me.Controls.Add(Me.txtMsg)
         Me.Controls.Add(Me.txtOut)
+        Me.Font = New System.Drawing.Font("Unispace", 9.749999!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Name = "Form1"
         Me.Text = "Form1"
         Me.ResumeLayout(False)

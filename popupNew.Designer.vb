@@ -35,31 +35,35 @@ Partial Class popupNew
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Unispace", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(12, 9)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(38, 13)
+        Me.Label3.Size = New System.Drawing.Size(42, 14)
         Me.Label3.TabIndex = 22
         Me.Label3.Text = "Name:"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Unispace", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(12, 64)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(29, 13)
+        Me.Label2.Size = New System.Drawing.Size(42, 14)
         Me.Label2.TabIndex = 21
         Me.Label2.Text = "Port:"
         '
         'txtName
         '
-        Me.txtName.Location = New System.Drawing.Point(56, 6)
+        Me.txtName.Font = New System.Drawing.Font("Unispace", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtName.Location = New System.Drawing.Point(60, 6)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(131, 20)
+        Me.txtName.Size = New System.Drawing.Size(131, 21)
         Me.txtName.TabIndex = 20
         '
         'btnNew
         '
         Me.btnNew.BackColor = System.Drawing.Color.White
+        Me.btnNew.Font = New System.Drawing.Font("Unispace", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnNew.Location = New System.Drawing.Point(12, 87)
         Me.btnNew.Name = "btnNew"
         Me.btnNew.Size = New System.Drawing.Size(71, 23)
@@ -69,31 +73,35 @@ Partial Class popupNew
         '
         'txtPort
         '
-        Me.txtPort.Location = New System.Drawing.Point(47, 61)
+        Me.txtPort.Font = New System.Drawing.Font("Unispace", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPort.Location = New System.Drawing.Point(60, 61)
         Me.txtPort.Name = "txtPort"
-        Me.txtPort.Size = New System.Drawing.Size(41, 20)
+        Me.txtPort.Size = New System.Drawing.Size(41, 21)
         Me.txtPort.TabIndex = 18
         Me.txtPort.Text = "15000"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Unispace", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(12, 38)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(20, 13)
+        Me.Label1.Size = New System.Drawing.Size(28, 14)
         Me.Label1.TabIndex = 17
         Me.Label1.Text = "IP:"
         '
         'txtIP
         '
-        Me.txtIP.Location = New System.Drawing.Point(38, 35)
+        Me.txtIP.Font = New System.Drawing.Font("Unispace", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtIP.Location = New System.Drawing.Point(46, 35)
         Me.txtIP.Name = "txtIP"
-        Me.txtIP.Size = New System.Drawing.Size(86, 20)
+        Me.txtIP.Size = New System.Drawing.Size(86, 21)
         Me.txtIP.TabIndex = 16
         '
         'Button1
         '
         Me.Button1.BackColor = System.Drawing.Color.White
+        Me.Button1.Font = New System.Drawing.Font("Unispace", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.Location = New System.Drawing.Point(89, 87)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(91, 23)

@@ -140,9 +140,10 @@ Partial Class Xs_and_Os
         'lblOpp
         '
         Me.lblOpp.AutoSize = True
-        Me.lblOpp.Location = New System.Drawing.Point(13, 13)
+        Me.lblOpp.Font = New System.Drawing.Font("Unispace", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOpp.Location = New System.Drawing.Point(211, 9)
         Me.lblOpp.Name = "lblOpp"
-        Me.lblOpp.Size = New System.Drawing.Size(39, 13)
+        Me.lblOpp.Size = New System.Drawing.Size(69, 19)
         Me.lblOpp.TabIndex = 29
         Me.lblOpp.Text = "Label1"
         '
